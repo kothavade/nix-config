@@ -22,12 +22,12 @@
             nixpkgs.hostPlatform = "x86_64-linux";
             imports = [
               { users.users.${userName}.isNormalUser = true; }
-              ./common/modules
-              ./linux/modules
+              ./modules/common
+              ./modules/linux
               self.nixosModules.home-manager
               {
                 home-manager.users.${userName} = {
-                  imports = [ ./common/home ./linux/home ];
+                  imports = [ ./home/common ./home/linux ];
                   home.stateVersion = "23.05";
                 };
               }
@@ -39,8 +39,8 @@
           apollo = self.nixos-flake.lib.mkMacosSystem {
             nixpkgs.hostPlatform = "aarch64-darwin";
             imports = [
-              ./common/modules
-              ./darwin/modules
+              ./modules/common
+              ./modules/darwin
               self.darwinModules_.home-manager
               {
                 users.users.${userName} = {
@@ -48,7 +48,7 @@
                   home = "/Users/${userName}";
                 };
                 home-manager.users.${userName} = {
-                  imports = [ ./common/home ./darwin/home ];
+                  imports = [ ./home/common ./home/darwin ];
                   home.stateVersion = "23.05";
                 };
               }
