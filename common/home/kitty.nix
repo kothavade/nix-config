@@ -2,7 +2,7 @@
   programs.kitty = {
     enable = true;
     darwinLaunchOptions = [ "--single-instance" ];
-    settings = with pkgs; { shell = "${fish}/bin/fish"; };
+    settings.shell = "${pkgs.fish}/bin/fish";
     extraConfig = ''
       font_family Liga SFMono Nerd Font
       bold_font Liga SFMono Nerd Font Bold
