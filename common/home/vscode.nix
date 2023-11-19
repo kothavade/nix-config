@@ -39,6 +39,7 @@
       "workbench.layoutControl.enabled" = false;
 
       "git.autofetch" = true;
+      "git.confirmSync" = false;
 
       "extensions.experimental.affinity" = { "asvetliakov.vscode-neovim" = 1; };
 
