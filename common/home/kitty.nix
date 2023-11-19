@@ -9,12 +9,15 @@
       italic_font Liga SFMono Nerd Font Italic
       bold_italic_font Liga SFMono Nerd Font Bold Italic
 
-
-
       font_size 12.0
 
       macos_option_as_alt yes
       macos_quit_when_last_window_closed yes
+
+      map cmd+t new_tab_with_cwd
+      map kitty_mod+t new_tab_with_cwd
+      map kitty_mod+enter launch --cwd=current --type=window
+      map cmd+enter       launch --cwd=current --type=window
 
       foreground #dde1e6
       background #161616
