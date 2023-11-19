@@ -63,10 +63,5 @@
         packages.default = self'.packages.activate;
       };
     };
-  templates = {
-    rust = {
-      path = "./templates/rust";
-      description = "rust project template";
-    };
-  };
 }
+
