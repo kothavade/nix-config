@@ -10,6 +10,7 @@
     nixos-flake.url = "github:srid/nixos-flake";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     neovim-nightly-overlay.inputs.nixpkgs.follows = "nixpkgs";
+    neovim-nightly-overlay.inputs.flake-parts.follows = "flake-parts";
   };
 
   outputs = inputs@{ self, ... }:
