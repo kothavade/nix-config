@@ -1,7 +1,6 @@
 {
   inputs = {
-    nixpkgs.url =
-      "github:nixos/nixpkgs/master"; # should be nixos-unstable once docker is fixed
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nix-darwin.url = "github:lnl7/nix-darwin/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";

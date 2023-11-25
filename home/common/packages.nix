@@ -15,6 +15,7 @@
     gh
     github-copilot-cli
     tree-sitter
+    imagemagick
     # languages
     typst
     nodejs_20
@@ -23,5 +24,6 @@
     nil
     nixfmt
     statix
+    lua-language-server
   ];
 }
