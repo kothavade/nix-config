@@ -1,8 +1,11 @@
-_: {
+{ pkgs, flake, ... }:
+let neovim = flake.inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
+in {
   programs.neovim = {
     enable = true;
+    package = neovim;
     defaultEditor = true;
     withRuby = false;
-    extraLuaPackages = ps: [ ps.magick ];
+    extraLuaPackages = luaPkgs: with luaPkgs; [ magick ];
   };
 }
