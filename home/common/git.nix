@@ -19,7 +19,9 @@ in {
         light = false;
       };
     };
+    ignores = [ "**/.idea/" "**/.direnv/" "**/.DS_Store" ];
     extraConfig = {
+      pull.ff = "only";
       credential.helper = credential;
       init.defaultBranch = "main";
       push.autoSetupRemote = true;
