@@ -14,10 +14,9 @@
   };
 
   outputs = inputs@{ self, ... }:
-    let overlays = [ inputs.neovim-nightly-overlay.overlay ];
-    in inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" "aarch64-darwin" ];
-      imports = [ inputs.nixos-flake.flakeModule ];
+      imports = [ inputs.nixos-flake.flakeModule ./overlays ];
       flake = let userName = "ved";
       in {
         nixosConfigurations = {
@@ -64,6 +63,9 @@
         nixos-flake.primary-inputs =
           [ "nixpkgs" "home-manager" "nix-darwin" "nixos-flake" ];
         packages.default = self'.packages.activate;
+        _module.args = {
+          nixpkgs.overlays = lib.mkForce [ self.overlays.default ];
+        };
       };
     };
 }

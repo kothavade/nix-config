@@ -66,6 +66,7 @@
         "today" = ''
           icalBuddy -f -iep "title,datetime" -po "datetime,title" -df "%RD" eventsToday'';
       };
+      shellAbbrs = { "lc" = "cd ~/Code/leetcode/ && nvim lc"; };
       plugins = with pkgs.fishPlugins; [
         {
           name = "plugin-git";

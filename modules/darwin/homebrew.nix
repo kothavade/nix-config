@@ -36,6 +36,10 @@ _: {
       "steam"
       # communication
       "zoom"
+      # security
+      "knockknock"
+      "blockblock"
+      "lulu"
       # fonts
       "font-sf-mono-nerd-font-ligaturized"
       "font-sf-mono"
