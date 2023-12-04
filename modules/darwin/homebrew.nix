@@ -27,6 +27,7 @@ _: {
       # dev
       "orbstack"
       "tailscale"
+      "qtspim" # delete after cmsc216
       # browsers
       "firefox"
       "google-chrome"
