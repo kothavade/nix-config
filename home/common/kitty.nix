@@ -18,6 +18,9 @@
       map kitty_mod+t new_tab_with_cwd
       map kitty_mod+enter launch --cwd=current --type=window
       map cmd+enter       launch --cwd=current --type=window
+      mouse_map left click ungrabbed mouse_handle_click selection link prompt
+      map kitty_mod+e kitten hints 
+      map cmd+e kitten hints
 
       foreground #dde1e6
       background #161616
