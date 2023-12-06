@@ -16,10 +16,13 @@
     github-copilot-cli
     tree-sitter
     imagemagick
+    flyctl
+    awscli2
     # languages
     typst
     nodejs_20
     bun
+    deno
     clang-tools
     nil
     nixfmt

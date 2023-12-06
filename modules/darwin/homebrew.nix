@@ -7,7 +7,7 @@ _: {
       cleanup = "zap";
       upgrade = true;
     };
-    brews = [ "ical-buddy" "libusb" ];
+    brews = [ "ical-buddy" "spim" ];
     taps = [
       "shaunsingh/SFMono-Nerd-Font-Ligaturized"
       "homebrew/cask-fonts"
