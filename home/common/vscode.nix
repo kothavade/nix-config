@@ -20,7 +20,11 @@
       "editor.formatOnType" = true;
       "editor.stickyScroll.enabled" = true;
       "editor.minimap.enabled" = false;
-      "editor.codeActionsOnSave" = { "source.fixAll" = true; };
+      "editor.codeActionsOnSave" = {
+        "source.fixAll" = true;
+        "source.organizeImports.biome" = true;
+      };
+      "editor.linkedEditing" = true;
 
       "explorer.confirmDelete" = false;
 
@@ -61,20 +65,12 @@
         "editor.formatOnSave" = true;
       };
 
-      "[javascript]" = {
-        "editor.defaultFormatter" = "esbenp.prettier-vscode";
-      };
-      "[javascriptreact]" = {
-        "editor.defaultFormatter" = "esbenp.prettier-vscode";
-      };
-      "[typescript]" = {
-        "editor.defaultFormatter" = "esbenp.prettier-vscode";
-      };
-      "[typescriptreact]" = {
-        "editor.defaultFormatter" = "esbenp.prettier-vscode";
-      };
-      "[css]" = { "editor.defaultFormatter" = "esbenp.prettier-vscode"; };
-      "[html]" = { "editor.defaultFormatter" = "esbenp.prettier-vscode"; };
+      "[javascript]" = { "editor.defaultFormatter" = "biomejs.biome"; };
+      "[javascriptreact]" = { "editor.defaultFormatter" = "biomejs.biome"; };
+      "[typescript]" = { "editor.defaultFormatter" = "biomejs.biome"; };
+      "[typescriptreact]" = { "editor.defaultFormatter" = "biomejs.biome"; };
+      "[css]" = { "editor.defaultFormatter" = "biomejs.biome"; };
+      "[html]" = { "editor.defaultFormatter" = "biomejs.biome"; };
 
       # Java
       "redhat.telemetry.enabled" = false;
