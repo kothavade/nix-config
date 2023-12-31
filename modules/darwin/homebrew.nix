@@ -7,7 +7,7 @@ _: {
       cleanup = "zap";
       upgrade = true;
     };
-    brews = [ "ical-buddy" "spim" ];
+    brews = [ "ical-buddy" ];
     taps = [
       "shaunsingh/SFMono-Nerd-Font-Ligaturized"
       "homebrew/cask-fonts"
@@ -27,9 +27,8 @@ _: {
       # dev
       "orbstack"
       "tailscale"
-      "qtspim" # delete after cmsc216
       # browsers
-      "firefox"
+      "firefox-developer-edition"
       "google-chrome"
       "arc"
       "microsoft-edge"
@@ -38,8 +37,6 @@ _: {
       # communication
       "zoom"
       # security
-      "knockknock"
-      "blockblock"
       "lulu"
       # fonts
       "font-sf-mono-nerd-font-ligaturized"

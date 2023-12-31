@@ -36,5 +36,7 @@ in {
       lua-language-server
       typst
       typst-preview
+      nodePackages.pyright
+      ruff-lsp
     ] ++ [ stable.typst-lsp ];
 }
