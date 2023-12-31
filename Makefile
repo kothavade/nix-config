@@ -8,3 +8,4 @@ update u:
 
 clean c:
 	nix-collect-garbage --delete-old
+	sudo nix-collect-garbage --delete-old
