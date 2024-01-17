@@ -1,43 +1,5 @@
 { pkgs, ... }: {
   programs = {
-    starship = {
-      enable = true;
-      settings = {
-        scan_timeout = 10;
-        add_newline = false;
-        line_break.disabled = true;
-        format =
-          "$hostname$directory$git_branch$git_metrics$nix_shell$package$character";
-        character = {
-          success_symbol = "[λ](green)";
-          error_symbol = "[λ](red)";
-          vicmd_symbol = "[λ](purple)";
-          vimcmd_replace_one_symbol = "[λ](cyan)";
-          vimcmd_replace_symbol = "[λ](cyan)";
-          vimcmd_visual_symbol = "[λ](yellow)";
-        };
-        directory = {
-          style = "cyan";
-          read_only = " ";
-        };
-        git_branch = {
-          style = "purple";
-          symbol = "";
-        };
-        git_metrics = {
-          disabled = false;
-          added_style = "bold yellow";
-          deleted_style = "bold red";
-        };
-        package.format = "version [$version](bold green) ";
-        nix_shell = {
-          symbol = " ";
-          format = "via [$symbol$name]($style) ";
-          impure_msg = "";
-          pure_msg = "";
-        };
-      };
-    };
     direnv = {
       enable = true;
       nix-direnv.enable = true;
@@ -56,18 +18,34 @@
       interactiveShellInit = ''
         set fish_greeting
         fish_vi_key_bindings
+        set -g async_prompt_functions _pure_prompt_git
         set -Ux DIRENV_LOG_FORMAT ""
+        set -U pure_symbol_prompt "λ"
+        set -U pure_symbol_reverse_prompt "λ"
+        set -U pure_enable_single_line_prompt true
       '';
       shellAliases = with pkgs; {
         cat = "${bat}/bin/bat --paging never ";
-        "," = " __copilot_what-the-shell";
-        ",g" = " __copilot_git-assist";
-        ",gh" = " __copilot_gh-assist";
+        "?" = "gh copilot suggest";
         "today" = ''
           icalBuddy -f -iep "title,datetime" -po "datetime,title" -df "%RD" eventsToday'';
       };
       shellAbbrs = { "lc" = "cd ~/Code/leetcode/ && nvim lc"; };
       plugins = with pkgs.fishPlugins; [
+        # TODO: nix support in mainline pure: https://github.com/pure-fish/pure/pull/338
+        {
+          name = "pure";
+          src = pkgs.fetchFromGitHub {
+            owner = "m15a";
+            repo = "pure";
+            rev = "d48237484fd3e3761221e8f1c26e819673b91a93";
+            sha256 = "sha256-YyDsZ1FTIZwCzgNt4SX19VxqY+1avHvyabcSePW59+g=";
+          };
+        }
+        {
+          name = "async-prompt";
+          inherit (async-prompt) src;
+        }
         {
           name = "plugin-git";
           inherit (plugin-git) src;
@@ -75,10 +53,6 @@
         {
           name = "fzf-fish";
           inherit (fzf-fish) src;
-        }
-        {
-          name = "github-copilot-cli-fish";
-          inherit (github-copilot-cli-fish) src;
         }
       ];
     };

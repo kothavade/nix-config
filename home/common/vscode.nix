@@ -9,6 +9,7 @@
       "workbench.colorTheme" = "Min Dark";
       "workbench.iconTheme" = "material-icon-theme";
       "workbench.startupEditor" = "none";
+      "workbench.layoutControl.enabled" = false;
 
       "window.commandCenter" = false;
 
@@ -37,10 +38,7 @@
         };
       };
       "terminal.integrated.defaultProfile.osx" = "fish";
-
       "terminal.integrated.env.osx" = { };
-
-      "workbench.layoutControl.enabled" = false;
 
       "git.autofetch" = true;
       "git.confirmSync" = false;

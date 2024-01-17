@@ -15,7 +15,6 @@ _: {
     ];
     casks = [
       # system
-      "amethyst"
       "raycast"
       "karabiner-elements"
       "middleclick"

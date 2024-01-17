@@ -1,11 +1,13 @@
-.PHONY: update run clean
+.PHONY: update run clean all
 
-run r:
+run:
 	nix run
 
-update u:
+update:
 	nix flake update
 
-clean c:
+clean:
 	nix-collect-garbage --delete-old
 	sudo nix-collect-garbage --delete-old
+
+all: update run clean
