@@ -18,11 +18,11 @@
     delta
     fastfetch
     gh
-    github-copilot-cli
     tree-sitter
     imagemagick
     obsidian
     websocat
+    bitwarden-cli
     #- languages
     #-- js
     nodejs_20

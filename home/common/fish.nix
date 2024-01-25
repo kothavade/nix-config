@@ -23,16 +23,19 @@
         set -U pure_symbol_prompt "λ"
         set -U pure_symbol_reverse_prompt "λ"
         set -U pure_enable_single_line_prompt true
+        set -U pure_enable_nixdevshell true
+        set -U pure_symbol_nixdevshell_prefix "❄︎"
       '';
       shellAliases = with pkgs; {
         cat = "${bat}/bin/bat --paging never ";
-        "?" = "gh copilot suggest";
+        "," = "gh copilot suggest";
+        "ssh" = "kitten ssh";
         "today" = ''
           icalBuddy -f -iep "title,datetime" -po "datetime,title" -df "%RD" eventsToday'';
       };
       shellAbbrs = { "lc" = "cd ~/Code/leetcode/ && nvim lc"; };
       plugins = with pkgs.fishPlugins; [
-        # TODO: nix support in mainline pure: https://github.com/pure-fish/pure/pull/338
+        # TODO: nix support in pure: https://github.com/pure-fish/pure/pull/338
         {
           name = "pure";
           src = pkgs.fetchFromGitHub {
@@ -46,10 +49,11 @@
           name = "async-prompt";
           inherit (async-prompt) src;
         }
-        {
-          name = "plugin-git";
-          inherit (plugin-git) src;
-        }
+        # FIXME: CMD_DURATION error?
+        # {
+        #   name = "plugin-git";
+        #   inherit (plugin-git) src;
+        # }
         {
           name = "fzf-fish";
           inherit (fzf-fish) src;

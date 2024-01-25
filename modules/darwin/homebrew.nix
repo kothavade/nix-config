@@ -45,10 +45,12 @@ _: {
     masApps = {
       "wireguard" = 1451685025;
       "good notes" = 1444383602;
+      "bitwarden" = 1352778147;
       # safari extensions
       "adguard" = 1440147259;
       "hush" = 1544743900;
       "vinegar" = 1591303229;
+      "sponsorblock" = 1573461917;
     };
   };
 }
