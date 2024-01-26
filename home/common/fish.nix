@@ -24,7 +24,7 @@
         set -U pure_symbol_reverse_prompt "λ"
         set -U pure_enable_single_line_prompt true
         set -U pure_enable_nixdevshell true
-        set -U pure_symbol_nixdevshell_prefix "❄︎"
+        set -U pure_symbol_nixdevshell_prefix " "
       '';
       shellAliases = with pkgs; {
         cat = "${bat}/bin/bat --paging never ";
