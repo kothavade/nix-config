@@ -26,7 +26,7 @@ in {
       init.defaultBranch = "main";
       push.autoSetupRemote = true;
       gpg.format = "ssh";
-      user.signingkey = "~/.ssh/id_ed25519.pub";
+      user.signingKey = "~/.ssh/id_ed25519.pub";
     };
   };
 }
