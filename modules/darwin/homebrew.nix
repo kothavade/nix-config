@@ -33,7 +33,6 @@ _: {
       "microsoft-edge"
       # games
       "steam"
-      "whisky"
       # communication
       "zoom"
       # security

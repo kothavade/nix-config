@@ -1,9 +1,4 @@
-{ pkgs, ... }:
-# let
-# master = flake.inputs.nixpkgs-master.legacyPackages.${pkgs.system};
-# stable = flake.inputs.nixpkgs-stable.legacyPackages.${pkgs.system};
-# in {
-{
+{ pkgs, ... }: {
   home.packages = with pkgs; [
     #- tools
     docker
@@ -23,6 +18,8 @@
     obsidian
     websocat
     bitwarden-cli
+    pandoc
+    jujutsu
     #- languages
     #-- js
     nodejs_20
