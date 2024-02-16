@@ -22,8 +22,8 @@
       "editor.stickyScroll.enabled" = true;
       "editor.minimap.enabled" = false;
       "editor.codeActionsOnSave" = {
-        "source.fixAll" = true;
-        "source.organizeImports.biome" = true;
+        "source.fixAll" = "explicit";
+        "source.organizeImports.biome" = "explicit";
       };
       "editor.linkedEditing" = true;
 
@@ -52,10 +52,6 @@
       "nix.serverPath" = "${nil}/bin/nil";
       "nix.serverSettings" = {
         "nil" = { "formatting" = { "command" = [ "nixfmt" ]; }; };
-        "nixd" = {
-          "options" = { "enable" = true; };
-          "formatting" = { "command" = [ "nixfmt" ]; };
-        };
       };
 
       "[python]" = {

@@ -10,6 +10,7 @@ _: {
     brews = [ "ical-buddy" ];
     taps = [
       "shaunsingh/SFMono-Nerd-Font-Ligaturized"
+      "mrkai77/cask"
       "homebrew/cask-fonts"
       "homebrew/cask-versions"
     ];
@@ -21,8 +22,7 @@ _: {
       "itsycal"
       "iina"
       "keka"
-      # productivity
-      "tomatobar"
+      "loop"
       # dev
       "orbstack"
       "tailscale"
@@ -38,6 +38,7 @@ _: {
       # security
       "lulu"
       # fonts
+      "font-linux-biolinum"
       "font-sf-mono-nerd-font-ligaturized"
       "font-sf-mono"
       "font-sf-pro"
