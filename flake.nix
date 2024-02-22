@@ -8,6 +8,9 @@
 
     flake-parts.url = "github:hercules-ci/flake-parts";
     nixos-flake.url = "github:srid/nixos-flake";
+
+    nix-index-database.url = "github:Mic92/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs@{ self, ... }:
@@ -47,7 +50,11 @@
                   home = "/Users/${userName}";
                 };
                 home-manager.users.${userName} = {
-                  imports = [ ./home/common ./home/darwin ];
+                  imports = [
+                    ./home/common
+                    ./home/darwin
+                    inputs.nix-index-database.hmModules.nix-index
+                  ];
                   home.stateVersion = "23.05";
                 };
               }

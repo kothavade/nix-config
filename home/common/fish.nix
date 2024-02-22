@@ -1,5 +1,7 @@
 { pkgs, ... }: {
   programs = {
+    nix-index-database.comma.enable = true;
+    nix-index.enable = true;
     direnv = {
       enable = true;
       nix-direnv.enable = true;
@@ -28,21 +30,21 @@
       '';
       shellAliases = with pkgs; {
         cat = "${bat}/bin/bat --paging never ";
-        "," = "gh copilot suggest";
+        "ai" = "gh copilot suggest";
         "ssh" = "kitten ssh";
         "today" = ''
           icalBuddy -f -iep "title,datetime" -po "datetime,title" -df "%RD" eventsToday'';
       };
       shellAbbrs = { "lc" = "cd ~/Code/leetcode/ && nvim lc"; };
       plugins = with pkgs.fishPlugins; [
-        # TODO: nix support in pure: https://github.com/pure-fish/pure/pull/338
+        # TODO: upsteam latest pure?
         {
           name = "pure";
           src = pkgs.fetchFromGitHub {
             owner = "m15a";
             repo = "pure";
-            rev = "d48237484fd3e3761221e8f1c26e819673b91a93";
-            sha256 = "sha256-YyDsZ1FTIZwCzgNt4SX19VxqY+1avHvyabcSePW59+g=";
+            rev = "28447d2e7a4edf3c954003eda929cde31d3621d2";
+            sha256 = "sha256-8zxqPU9N5XGbKc0b3bZYkQ3yH64qcbakMsHIpHZSne4=";
           };
         }
         {
