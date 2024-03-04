@@ -23,6 +23,7 @@ _: {
       "iina"
       "keka"
       "loop"
+      "amethyst"
       # dev
       "orbstack"
       "tailscale"

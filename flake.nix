@@ -11,6 +11,10 @@
 
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    neovim-nightly-overlay.inputs.nixpkgs.follows = "nixpkgs";
+    neovim-nightly-overlay.inputs.flake-parts.follows = "flake-parts";
   };
 
   outputs = inputs@{ self, ... }:
@@ -68,6 +72,7 @@
           [ "nixpkgs" "home-manager" "nix-darwin" "nixos-flake" ];
         packages.default = self'.packages.activate;
         _module.args = {
+          # inputs.neovim-nightly-overlay.overlay
           nixpkgs.overlays = lib.mkForce [ self.overlays.default ];
         };
       };

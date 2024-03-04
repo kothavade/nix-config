@@ -8,6 +8,8 @@
       bold_font Liga SFMono Nerd Font Bold
       italic_font Liga SFMono Nerd Font Italic
       bold_italic_font Liga SFMono Nerd Font Bold Italic
+      modify_font      underline_thickness 1
+      modify_font      underline_position 18
 
       font_size 12.0
 
