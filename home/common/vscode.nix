@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   programs.vscode = {
-    enable = true;
+    # gui on darwin is annoying.
+    enable = false;
     enableUpdateCheck = false;
     mutableExtensionsDir = true;
     userSettings = with pkgs; {

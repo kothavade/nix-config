@@ -15,7 +15,6 @@
     gh
     tree-sitter
     imagemagick
-    obsidian
     websocat
     bitwarden-cli
     pandoc
