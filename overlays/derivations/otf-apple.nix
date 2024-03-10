@@ -1,22 +1,23 @@
-{ stdenvNoCC, fetchurl, p7zip, }:
+{
+  stdenvNoCC,
+  fetchurl,
+  p7zip,
+}:
 stdenvNoCC.mkDerivation {
   pname = "otf-apple";
   version = "1.0";
 
   src = [
     (fetchurl {
-      url =
-        "https://devimages-cdn.apple.com/design/resources/download/SF-Pro.dmg";
+      url = "https://devimages-cdn.apple.com/design/resources/download/SF-Pro.dmg";
       sha256 = "sha256-nkuHge3/Vy8lwYx9z+pvsQZfzrNIP4K0OutpPl4yXn0=";
     })
     (fetchurl {
-      url =
-        "https://devimages-cdn.apple.com/design/resources/download/SF-Mono.dmg";
+      url = "https://devimages-cdn.apple.com/design/resources/download/SF-Mono.dmg";
       sha256 = "sha256-pqkYgJZttKKHqTYobBUjud0fW79dS5tdzYJ23we9TW4=";
     })
     (fetchurl {
-      url =
-        "https://devimages-cdn.apple.com/design/resources/download/SF-Compact.dmg";
+      url = "https://devimages-cdn.apple.com/design/resources/download/SF-Compact.dmg";
       sha256 = "sha256-+Q4HInJBl3FLb29/x9utf7A55uh5r79eh/7hdQDdbSI=";
     })
     (fetchurl {
@@ -25,7 +26,7 @@ stdenvNoCC.mkDerivation {
     })
   ];
 
-  buildInputs = [ p7zip ];
+  buildInputs = [p7zip];
   sourceRoot = "./";
   preUnpack = "mkdir fonts";
   unpackCmd = ''

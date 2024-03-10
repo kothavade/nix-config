@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   programs.vscode = {
     # gui on darwin is annoying.
     enable = false;
@@ -35,16 +35,16 @@
       "terminal.integrated.profiles.osx" = {
         "fish" = {
           "path" = "${fish}/bin/fish";
-          "args" = [ "-l" ];
+          "args" = ["-l"];
         };
       };
       "terminal.integrated.defaultProfile.osx" = "fish";
-      "terminal.integrated.env.osx" = { };
+      "terminal.integrated.env.osx" = {};
 
       "git.autofetch" = true;
       "git.confirmSync" = false;
 
-      "extensions.experimental.affinity" = { "asvetliakov.vscode-neovim" = 1; };
+      "extensions.experimental.affinity" = {"asvetliakov.vscode-neovim" = 1;};
 
       "leetcode.workspaceFolder" = "/Users/ved/Code/leetcode";
       "leetcode.defaultLanguage" = "python3";
@@ -52,7 +52,7 @@
       "nix.enableLanguageServer" = true;
       "nix.serverPath" = "${nil}/bin/nil";
       "nix.serverSettings" = {
-        "nil" = { "formatting" = { "command" = [ "nixfmt" ]; }; };
+        "nil" = {"formatting" = {"command" = ["nixfmt"];};};
       };
 
       "[python]" = {
@@ -60,19 +60,18 @@
         "editor.formatOnSave" = true;
       };
 
-      "[javascript]" = { "editor.defaultFormatter" = "biomejs.biome"; };
-      "[javascriptreact]" = { "editor.defaultFormatter" = "biomejs.biome"; };
-      "[typescript]" = { "editor.defaultFormatter" = "biomejs.biome"; };
-      "[typescriptreact]" = { "editor.defaultFormatter" = "biomejs.biome"; };
-      "[css]" = { "editor.defaultFormatter" = "biomejs.biome"; };
-      "[html]" = { "editor.defaultFormatter" = "biomejs.biome"; };
+      "[javascript]" = {"editor.defaultFormatter" = "biomejs.biome";};
+      "[javascriptreact]" = {"editor.defaultFormatter" = "biomejs.biome";};
+      "[typescript]" = {"editor.defaultFormatter" = "biomejs.biome";};
+      "[typescriptreact]" = {"editor.defaultFormatter" = "biomejs.biome";};
+      "[css]" = {"editor.defaultFormatter" = "biomejs.biome";};
+      "[html]" = {"editor.defaultFormatter" = "biomejs.biome";};
 
       # Java
       "redhat.telemetry.enabled" = false;
 
       # Typst/Markdown
-      "languageToolLinter.managed.classPath" =
-        "${languagetool}/share/languagetool-server.jar";
+      "languageToolLinter.managed.classPath" = "${languagetool}/share/languagetool-server.jar";
       "languageToolLinter.serviceType" = "managed";
     };
   };

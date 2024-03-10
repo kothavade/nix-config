@@ -1,1 +1,3 @@
-{ ... }: { imports = [ ./homebrew.nix ./system.nix ]; } # ./fonts.nix ]; }
+{...}: {imports = [./homebrew.nix ./system.nix];}
+# ./fonts.nix ]; }
+

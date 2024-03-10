@@ -1,9 +1,13 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   programs.kitty = {
     enable = true;
-    darwinLaunchOptions = [ "--single-instance" ];
+    darwinLaunchOptions = ["--single-instance"];
     settings.shell = "${pkgs.fish}/bin/fish";
-    extraConfig = /* bash */ ''
+    extraConfig =
+      /*
+      bash
+      */
+      ''
         font_family Liga  SFMono Nerd Font
         bold_font         Liga SFMono Nerd Font Bold
         italic_font Liga  SFMono Nerd Font Italic
@@ -21,7 +25,7 @@
         map kitty_mod+enter launch --cwd=current --type=window
         map cmd+enter       launch --cwd=current --type=window
         mouse_map left click ungrabbed mouse_handle_click selection link prompt
-        map kitty_mod+e kitten hints 
+        map kitty_mod+e kitten hints
         map cmd+e kitten hints
 
         # oxocarbon

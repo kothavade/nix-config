@@ -18,23 +18,24 @@
     # neovim-nightly-overlay.inputs.flake-parts.follows = "flake-parts";
   };
 
-  outputs = inputs@{ self, ... }:
-    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [ "x86_64-linux" "aarch64-darwin" ];
-      imports = [ inputs.nixos-flake.flakeModule ./overlays ];
-      flake = let userName = "ved";
+  outputs = inputs @ {self, ...}:
+    inputs.flake-parts.lib.mkFlake {inherit inputs;} {
+      systems = ["x86_64-linux" "aarch64-darwin"];
+      imports = [inputs.nixos-flake.flakeModule ./overlays];
+      flake = let
+        userName = "ved";
       in {
         nixosConfigurations = {
           hades = self.nixos-flake.lib.mkLinuxSystem {
             nixpkgs.hostPlatform = "x86_64-linux";
             imports = [
-              { users.users.${userName}.isNormalUser = true; }
+              {users.users.${userName}.isNormalUser = true;}
               ./modules/common
               ./modules/linux
               self.nixosModules.home-manager
               {
                 home-manager.users.${userName} = {
-                  imports = [ ./home/common ./home/linux ];
+                  imports = [./home/common ./home/linux];
                   home.stateVersion = "23.05";
                 };
               }
@@ -68,15 +69,21 @@
         };
       };
 
-      perSystem = { self', system, pkgs, lib, config, inputs', ... }: {
-        nixos-flake.primary-inputs =
-          [ "nixpkgs" "home-manager" "nix-darwin" "nixos-flake" ];
+      perSystem = {
+        self',
+        system,
+        pkgs,
+        lib,
+        config,
+        inputs',
+        ...
+      }: {
+        nixos-flake.primary-inputs = ["nixpkgs" "home-manager" "nix-darwin" "nixos-flake"];
         packages.default = self'.packages.activate;
         _module.args = {
           # inputs.neovim-nightly-overlay.overlay
-          nixpkgs.overlays = lib.mkForce [ self.overlays.default ];
+          nixpkgs.overlays = lib.mkForce [self.overlays.default];
         };
       };
     };
 }
-

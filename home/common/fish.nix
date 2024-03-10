@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   programs = {
     nix-index-database.comma.enable = true;
     nix-index.enable = true;
@@ -35,7 +35,7 @@
         "today" = ''
           icalBuddy -f -iep "title,datetime" -po "datetime,title" -df "%RD" eventsToday'';
       };
-      shellAbbrs = { "lc" = "cd ~/Code/leetcode/ && nvim lc"; };
+      shellAbbrs = {"lc" = "cd ~/Code/leetcode/ && nvim lc";};
       plugins = with pkgs.fishPlugins; [
         # TODO: upsteam latest pure?
         {

@@ -1,4 +1,7 @@
-{ stdenvNoCC, fetchFromGitHub, }:
+{
+  stdenvNoCC,
+  fetchFromGitHub,
+}:
 stdenvNoCC.mkDerivation rec {
   pname = "sf-mono-liga-bin";
   version = "7723040ef50633da5094f01f93b96dae5e9b9299";

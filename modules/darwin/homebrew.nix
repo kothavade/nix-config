@@ -7,7 +7,7 @@ _: {
       cleanup = "zap";
       upgrade = true;
     };
-    brews = [ "ical-buddy" ];
+    brews = ["ical-buddy"];
     taps = [
       "shaunsingh/SFMono-Nerd-Font-Ligaturized"
       "mrkai77/cask"
