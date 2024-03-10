@@ -28,7 +28,8 @@
     clang-tools
     #-- nix
     nil
-    nixfmt
+    # nixfmt
+    alejandra
     statix
     #-- lua
     lua-language-server

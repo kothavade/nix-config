@@ -27,10 +27,10 @@ _: {
       # dev
       "orbstack"
       "tailscale"
+      "visual-studio-code"
       # browsers
       "firefox-developer-edition"
       "google-chrome"
-      "arc"
       "microsoft-edge"
       # games
       "steam"
