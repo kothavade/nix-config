@@ -81,7 +81,6 @@
         nixos-flake.primary-inputs = ["nixpkgs" "home-manager" "nix-darwin" "nixos-flake"];
         packages.default = self'.packages.activate;
         _module.args = {
-          # inputs.neovim-nightly-overlay.overlay
           nixpkgs.overlays = lib.mkForce [self.overlays.default];
         };
       };
