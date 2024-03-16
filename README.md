@@ -1,5 +1,5 @@
 
-<h1 align="center">❄ Frostbite ❄</h1>
+<h1 align="center">❄ Nix Config ❄</h1>
 
 My Nix configuaration for macOS (Darwin) and Linux.
 
