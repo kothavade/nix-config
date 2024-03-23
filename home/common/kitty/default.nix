@@ -26,6 +26,8 @@
       map kitty_mod+e kitten hints
       map cmd+e kitten hints
       include gruvbox.conf
+
+      tab_bar_style powerline
     '';
   };
   home.file.".config/kitty/gruvbox.conf".source = ./gruvbox.conf;
