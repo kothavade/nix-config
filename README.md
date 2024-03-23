@@ -1,5 +1,4 @@
-
-<h1 align="center">Nix Config</h1>
+# Nix Config
 
 My Nix configuaration for macOS (Darwin) and Linux.
 
