@@ -43,5 +43,8 @@
     #-- zig
     zig
     zls
+    #-- golang
+    go
+    gopls
   ];
 }
