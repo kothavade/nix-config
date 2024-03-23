@@ -11,7 +11,7 @@
       modify_font       underline_thickness 1
       modify_font       underline_position 18
 
-      disable_ligatures_under_cursor y
+      disable_ligatures cursor
 
       font_size 12.0
 
