@@ -10,7 +10,6 @@
     ripgrep
     fd
     bat
-    delta
     fastfetch
     gh
     tree-sitter

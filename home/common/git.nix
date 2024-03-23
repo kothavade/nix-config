@@ -11,12 +11,9 @@ in {
     enable = true;
     userName = "Ved Kothavade";
     userEmail = "ved@kothavade.com";
-    delta = {
+    difftastic = {
       enable = true;
-      options = {
-        navigate = true;
-        light = false;
-      };
+      display = "inline";
     };
     ignores = ["**/.idea/" "**/.direnv/" "**/.DS_Store"];
     extraConfig = {
