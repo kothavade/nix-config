@@ -45,5 +45,6 @@
     #-- golang
     go
     gopls
+    gofumpt
   ];
 }

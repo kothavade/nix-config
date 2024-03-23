@@ -2,7 +2,9 @@
   programs.kitty = {
     enable = true;
     darwinLaunchOptions = ["--single-instance"];
+    # TODO: this breaks on rebuild, but i don't like hardcdding either
     settings.shell = "${pkgs.fish}/bin/fish";
+    # settings.shell = "/etc/profiles/per-user/ved/bin/fish";
     extraConfig = ''
       font_family Liga  SFMono Nerd Font
       bold_font         Liga SFMono Nerd Font Bold
