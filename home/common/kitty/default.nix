@@ -2,7 +2,7 @@
   programs.kitty = {
     enable = true;
     darwinLaunchOptions = ["--single-instance"];
-    # TODO: this breaks on rebuild, but i don't like hardcdding either
+    # TODO: this breaks on rebuild, but i don't like hardcoding either
     settings.shell = "${pkgs.fish}/bin/fish";
     # settings.shell = "/etc/profiles/per-user/ved/bin/fish";
     extraConfig = ''
