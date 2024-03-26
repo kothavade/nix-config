@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     #- tools
+    devenv
     docker
     sccache
     yt-dlp
