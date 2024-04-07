@@ -1,19 +1,15 @@
-{pkgs, ...}: {
+_: {
   programs.kitty = {
     enable = true;
     darwinLaunchOptions = ["--single-instance"];
-    # TODO: this breaks on rebuild, but i don't like hardcoding either
-    settings.shell = "${pkgs.fish}/bin/fish";
-    # settings.shell = "/etc/profiles/per-user/ved/bin/fish";
+    settings.shell = "fish";
     extraConfig = ''
       # base
       editor  nvim
 
       # font
-      font_family       Liga SFMono Nerd Font
-      bold_font         Liga SFMono Nerd Font Bold
-      italic_font       Liga SFMono Nerd Font Italic
-      bold_italic_font  Liga SFMono Nerd Font Bold Italic
+      font_family       Berkeley Mono
+      symbol_map        U+279c Arial Unicode MS
       modify_font       underline_thickness 1
       modify_font       underline_position 18
       font_size         12.0

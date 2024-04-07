@@ -17,17 +17,16 @@
     imagemagick
     websocat
     bitwarden-cli
-    pandoc
     jujutsu
     #- languages
     #-- js
     nodejs_20
     bun
-    deno
     #-- c
     clang-tools
     #-- nix
     nil
+    nix-output-monitor
     # nixfmt
     alejandra
     statix
@@ -38,7 +37,6 @@
     typst-lsp
     typst-preview
     #-- python
-    nodePackages.pyright
     ruff-lsp
     #-- zig
     zig

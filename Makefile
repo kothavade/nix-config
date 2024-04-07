@@ -3,7 +3,7 @@
 all: update run git clean 
 
 run:
-	nix run
+	nix run --log-format internal-json -v 2>&1 |nom --json
 
 update:
 	nix flake update
