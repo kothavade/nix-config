@@ -35,7 +35,7 @@
               self.nixosModules.home-manager
               {
                 home-manager.users.${userName} = {
-                  imports = [./home/common ./home/linux];
+                  imports = [./home];
                   home.stateVersion = "23.05";
                 };
               }
@@ -57,8 +57,7 @@
                 };
                 home-manager.users.${userName} = {
                   imports = [
-                    ./home/common
-                    ./home/darwin
+                    ./home
                     inputs.nix-index-database.hmModules.nix-index
                   ];
                   home.stateVersion = "23.05";

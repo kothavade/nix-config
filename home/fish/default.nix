@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   programs = {
     nix-index-database.comma.enable = true;
     nix-index.enable = true;
@@ -36,6 +40,12 @@
           icalBuddy -f -iep "title,datetime" -po "datetime,title" -df "%RD" eventsToday'';
       };
       shellAbbrs = {"lc" = "cd ~/Code/leetcode/ && nvim lc";};
+      functions =
+        {
+        }
+        ++ lib.optionals pkgs.isDarwin {
+          copy = "cat $argv[1] | pbcopy";
+        };
       plugins = with pkgs.fishPlugins; [
         {
           name = "pure";
