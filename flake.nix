@@ -13,7 +13,7 @@
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-    # don't override, so cache works?
+    # FIXME: don't override, so cache works?
     # neovim-nightly-overlay.inputs.nixpkgs.follows = "nixpkgs";
     # neovim-nightly-overlay.inputs.flake-parts.follows = "flake-parts";
   };
