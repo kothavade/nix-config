@@ -41,9 +41,8 @@
       };
       shellAbbrs = {"lc" = "cd ~/Code/leetcode/ && nvim lc";};
       functions =
+        # TODO: find a clean way to make this darwin only (lib.optionals, mkMerge, etc.)
         {
-        }
-        ++ lib.optionals pkgs.isDarwin {
           copy = "cat $argv[1] | pbcopy";
         };
       plugins = with pkgs.fishPlugins; [

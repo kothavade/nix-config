@@ -18,7 +18,10 @@
     websocat
     bitwarden-cli
     jujutsu
+    awscli2
     #- languages
+    #-- sh
+    shellcheck
     #-- js
     nodejs_20
     bun

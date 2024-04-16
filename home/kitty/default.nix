@@ -2,7 +2,7 @@ _: {
   programs.kitty = {
     enable = true;
     darwinLaunchOptions = ["--single-instance"];
-    settings.shell = "fish";
+    settings.shell = "/etc/profiles/per-user/ved/bin/fish";
     extraConfig = ''
       # base
       editor  nvim
@@ -31,8 +31,12 @@ _: {
       mouse_map left click ungrabbed mouse_handle_click selection link prompt
 
       # ui
-      tab_bar_style   powerline
-      include         gruvbox.conf
+      tab_bar_style           powerline
+      active_tab_foreground   #ebdbb2
+      active_tab_background   #504945
+      inactive_tab_foreground #ebdbb2
+      inactive_tab_background #3c3836
+      include                 gruvbox.conf
     '';
   };
   home.file.".config/kitty/gruvbox.conf".source = ./gruvbox.conf;
