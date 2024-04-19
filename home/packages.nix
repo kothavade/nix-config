@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  texpresso = pkgs.texpresso.overrideAttrs (oldAttrs: {
+    nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [pkgs.gcc];
+  });
+in {
   home.packages = with pkgs; [
     #- tools
     devenv
@@ -39,6 +43,10 @@
     typst
     typst-lsp
     typst-preview
+    #-- latex
+    # tex
+    texpresso
+    texlab
     #-- python
     ruff-lsp
     #-- zig
