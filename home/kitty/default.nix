@@ -22,6 +22,7 @@ _: {
       # hotkeys
       map   cmd+t             new_tab_with_cwd
       map   cmd+l             next_layout
+      map   kitty_mod+l             next_layout
       map   kitty_mod+t       new_tab_with_cwd
       map   kitty_mod+enter   launch --cwd=current --type=window
       map   cmd+enter         launch --cwd=current --type=window

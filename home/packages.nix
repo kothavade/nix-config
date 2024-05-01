@@ -23,6 +23,7 @@ in {
     bitwarden-cli
     jujutsu
     awscli2
+    qmk
     #- languages
     #-- sh
     shellcheck
