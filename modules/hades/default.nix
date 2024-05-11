@@ -23,6 +23,8 @@
   ];
 
   # Enable the OpenSSH daemon.
+  services.tailscale.enable = true;
+  services.tailscale.useRoutingFeatures = "server";
   services.openssh.enable = true;
   users.users.root.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN9SDEnJI+ueh1lXbrTpG2hoHtc6RfjRxd0RTXjjDdkB ved@kothavade.com"
