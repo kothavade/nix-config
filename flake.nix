@@ -18,27 +18,46 @@
     # neovim-nightly-overlay.inputs.flake-parts.follows = "flake-parts";
   };
 
-  outputs = inputs @ {self, ...}:
+  outputs = inputs @ {
+    self,
+    pkgs,
+    ...
+  }:
     inputs.flake-parts.lib.mkFlake {inherit inputs;} {
-      systems = ["x86_64-linux" "aarch64-darwin"];
+      systems = ["aarch64-linux" "aarch64-darwin"];
       imports = [inputs.nixos-flake.flakeModule ./overlays];
       flake = let
         userName = "ved";
       in {
         nixosConfigurations = {
+          # Desktop
+          # helios = self.nixos-flake.lib.mkLinuxSystem {
+          #   nixpkgs.hostPlatform = "x86_64-linux";
+          #   imports = [
+          #     {users.users.${userName}.isNormalUser = true;}
+          #     ./modules/common
+          #     ./modules/linux
+          #     self.nixosModules.home-manager
+          #     {
+          #       home-manager.users.${userName} = {
+          #         imports = [./home];
+          #         home.stateVersion = "24.05";
+          #       };
+          #     }
+          #   ];
+          # };
+          # Oracle Server
           hades = self.nixos-flake.lib.mkLinuxSystem {
-            nixpkgs.hostPlatform = "x86_64-linux";
+            nixpkgs.hostPlatform = "aarch64-linux";
             imports = [
-              {users.users.${userName}.isNormalUser = true;}
-              ./modules/common
-              ./modules/linux
-              self.nixosModules.home-manager
               {
-                home-manager.users.${userName} = {
-                  imports = [./home];
-                  home.stateVersion = "23.05";
+                users.users.${userName} = {
+                  isNormalUser = true;
+                  extraGroups = ["wheel"];
                 };
               }
+              ./modules/common
+              ./modules/hades
             ];
           };
         };
@@ -58,9 +77,10 @@
                 home-manager.users.${userName} = {
                   imports = [
                     ./home
+                    ./home/darwin.nix
                     inputs.nix-index-database.hmModules.nix-index
                   ];
-                  home.stateVersion = "23.05";
+                  home.stateVersion = "24.05";
                 };
               }
             ];

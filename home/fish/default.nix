@@ -1,8 +1,4 @@
-{
-  lib,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   programs = {
     nix-index-database.comma.enable = true;
     nix-index.enable = true;
@@ -12,7 +8,7 @@
     };
     zoxide = {
       enable = true;
-      enableFishIntegration = true;
+      enableFis = true;
     };
     lsd = {
       enable = true;
@@ -40,11 +36,7 @@
           icalBuddy -f -iep "title,datetime" -po "datetime,title" -df "%RD" eventsToday'';
       };
       shellAbbrs = {"lc" = "cd ~/Code/leetcode/ && nvim lc";};
-      functions =
-        # TODO: find a clean way to make this darwin only (lib.optionals, mkMerge, etc.)
-        {
-          copy = "cat $argv[1] | pbcopy";
-        };
+
       plugins = with pkgs.fishPlugins; [
         {
           name = "pure";
