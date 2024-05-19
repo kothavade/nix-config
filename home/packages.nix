@@ -1,8 +1,4 @@
-{pkgs, ...}: let
-  texpresso = pkgs.texpresso.overrideAttrs (oldAttrs: {
-    nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [pkgs.gcc];
-  });
-in {
+{pkgs, ...}: {
   home.packages = with pkgs; [
     #- tools
     devenv
@@ -21,7 +17,6 @@ in {
     imagemagick
     websocat
     bitwarden-cli
-    jujutsu
     awscli2
     qmk
     #- languages
@@ -30,6 +25,7 @@ in {
     #-- js
     nodejs_20
     bun
+    biome
     #-- c
     clang-tools
     #-- nix
@@ -44,10 +40,6 @@ in {
     typst
     typst-lsp
     typst-preview
-    #-- latex
-    # tex
-    texpresso
-    texlab
     #-- python
     ruff-lsp
     #-- zig
