@@ -1,107 +1,62 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nix-darwin.url = "github:lnl7/nix-darwin/master";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    darwin.url = "github:lnl7/nix-darwin/master";
+    darwin.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    flake-parts.url = "github:hercules-ci/flake-parts";
-    nixos-flake.url = "github:srid/nixos-flake";
-
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
-
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-    # FIXME: don't override, so cache works?
-    # neovim-nightly-overlay.inputs.nixpkgs.follows = "nixpkgs";
-    # neovim-nightly-overlay.inputs.flake-parts.follows = "flake-parts";
   };
 
-  outputs = inputs @ {
+  outputs = {
     self,
-    pkgs,
+    nixpkgs,
+    darwin,
+    home-manager,
+    nix-index-database,
     ...
-  }:
-    inputs.flake-parts.lib.mkFlake {inherit inputs;} {
-      systems = ["aarch64-linux" "aarch64-darwin"];
-      imports = [inputs.nixos-flake.flakeModule ./overlays];
-      flake = let
-        userName = "ved";
-      in {
-        nixosConfigurations = {
-          # Desktop
-          # helios = self.nixos-flake.lib.mkLinuxSystem {
-          #   nixpkgs.hostPlatform = "x86_64-linux";
-          #   imports = [
-          #     {users.users.${userName}.isNormalUser = true;}
-          #     ./modules/common
-          #     ./modules/linux
-          #     self.nixosModules.home-manager
-          #     {
-          #       home-manager.users.${userName} = {
-          #         imports = [./home];
-          #         home.stateVersion = "24.05";
-          #       };
-          #     }
-          #   ];
-          # };
-          # Oracle Server
-          hades = self.nixos-flake.lib.mkLinuxSystem {
-            nixpkgs.hostPlatform = "aarch64-linux";
-            imports = [
-              {
-                users.users.${userName} = {
-                  isNormalUser = true;
-                  extraGroups = ["wheel"];
-                };
-              }
-              ./modules/common
-              ./modules/hades
-            ];
+  } @ inputs: let
+    user = "ved";
+  in {
+    darwinConfigurations.apollo = darwin.lib.darwinSystem {
+      system = "aarch64-darwin";
+      specialArgs = inputs;
+      modules = [
+        ./modules/common
+        ./modules/darwin
+        home-manager.darwinModules.home-manager
+        {
+          users.users.${user} = {
+            name = user;
+            home = "/Users/${user}";
           };
-        };
-
-        darwinConfigurations = {
-          apollo = self.nixos-flake.lib.mkMacosSystem {
-            nixpkgs.hostPlatform = "aarch64-darwin";
+          home-manager.users.${user} = {
             imports = [
-              ./modules/common
-              ./modules/darwin
-              self.darwinModules_.home-manager
-              {
-                users.users.${userName} = {
-                  name = userName;
-                  home = "/Users/${userName}";
-                };
-                home-manager.users.${userName} = {
-                  imports = [
-                    ./home
-                    ./home/darwin.nix
-                    inputs.nix-index-database.hmModules.nix-index
-                  ];
-                  home.stateVersion = "24.05";
-                };
-              }
+              ./home
+              ./home/darwin.nix
+              nix-index-database.hmModules.nix-index
             ];
+            home.stateVersion = "24.05";
           };
-        };
-      };
-
-      perSystem = {
-        self',
-        system,
-        pkgs,
-        lib,
-        config,
-        inputs',
-        ...
-      }: {
-        nixos-flake.primary-inputs = ["nixpkgs" "home-manager" "nix-darwin" "nixos-flake"];
-        packages.default = self'.packages.activate;
-        _module.args = {
-          nixpkgs.overlays = lib.mkForce [self.overlays.default];
-        };
-      };
+        }
+      ];
     };
+
+    nixosConfigurations.hades = nixpkgs.lib.nixosSystem {
+      system = "aarch64-linux";
+      specialArgs = inputs;
+      modules = [
+        {
+          users.users.${user} = {
+            isNormalUser = true;
+            extraGroups = ["wheel"];
+          };
+        }
+        ./modules/common
+        ./modules/hades
+      ];
+    };
+  };
 }

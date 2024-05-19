@@ -8,7 +8,7 @@
     };
     zoxide = {
       enable = true;
-      enableFis = true;
+      enableFishIntegration = true;
     };
     lsd = {
       enable = true;
