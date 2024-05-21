@@ -38,9 +38,10 @@
 
   environment.systemPackages = with pkgs; [
     # Needed when not using Home Manager
-    vim git gmake
+    vim
+    git
+    gmake
   ];
-
 
   networking.hostName = "hades";
 
@@ -49,11 +50,10 @@
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN9SDEnJI+ueh1lXbrTpG2hoHtc6RfjRxd0RTXjjDdkB ved@kothavade.com"
   ];
 
-
   services.tailscale.useRoutingFeatures = "server";
 
   users.users.ved = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = ["wheel"];
   };
 }
