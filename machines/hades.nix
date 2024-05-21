@@ -36,6 +36,12 @@
     keyMap = "us";
   };
 
+  environment.systemPackages = with pkgs; [
+    # Needed when not using Home Manager
+    vim git gmake
+  ];
+
+
   networking.hostName = "hades";
 
   services.openssh.enable = true;
