@@ -1,4 +1,5 @@
 {
+  pkgs,
   lib,
   modulesPath,
   ...
@@ -40,7 +41,7 @@
     # Needed when not using Home Manager
     vim
     git
-    gmake
+    gnumake
   ];
 
   networking.hostName = "hades";
