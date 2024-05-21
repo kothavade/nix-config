@@ -106,6 +106,7 @@
     packages = with pkgs; [
       kate
       plasma5Packages.polonium
+      kdePackages.plasma-browser-integration
     ];
   };
 
