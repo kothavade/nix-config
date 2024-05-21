@@ -1,12 +1,15 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   credential =
-    if pkgs.stdenv.isDarwin
-    then "osxkeychain"
+    if pkgs.stdenv.isDarwin then
+      "osxkeychain"
     # TODO: Research libsecret or netrc as encrypted alt to store
     # https://stackoverflow.com/questions/53305965/whats-the-best-encrypted-git-credential-helper-for-linux
     # https://stackoverflow.com/questions/18838579/how-to-store-your-github-https-password-on-linux-in-a-terminal-keychain
-    else "store";
-in {
+    else
+      "store";
+in
+{
   programs.git = {
     enable = true;
     userName = "Ved Kothavade";
@@ -15,7 +18,11 @@ in {
       enable = true;
       display = "inline";
     };
-    ignores = ["**/.idea/" "**/.direnv/" "**/.DS_Store"];
+    ignores = [
+      "**/.idea/"
+      "**/.direnv/"
+      "**/.DS_Store"
+    ];
     extraConfig = {
       pull.ff = "only";
       credential.helper = credential;

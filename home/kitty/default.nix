@@ -1,7 +1,8 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.kitty = {
     enable = true;
-    darwinLaunchOptions = ["--single-instance"];
+    darwinLaunchOptions = [ "--single-instance" ];
     settings.shell = "/etc/profiles/per-user/ved/bin/fish";
     extraConfig =
       ''
@@ -48,13 +49,14 @@
         include                 gruvbox.conf
       ''
       + (
-        if pkgs.stdenv.isDarwin
-        then ''
-          font_size 12.0
-        ''
-        else ''
-          font_size 11.0
-        ''
+        if pkgs.stdenv.isDarwin then
+          ''
+            font_size 12.0
+          ''
+        else
+          ''
+            font_size 11.0
+          ''
       );
   };
   home.file.".config/kitty/gruvbox.conf".source = ./gruvbox.conf;

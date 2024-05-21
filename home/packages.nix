@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   home.packages = with pkgs; [
     #- system
     gnumake
@@ -27,15 +28,12 @@
     #-- js
     nodejs_20
     bun
-    biome
     #-- c
     gcc
     clang-tools
     #-- nix
     nil
-    nix-output-monitor
-    # nixfmt
-    alejandra
+    nixfmt-rfc-style
     statix
     #-- lua
     lua-language-server

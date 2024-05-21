@@ -13,8 +13,7 @@ _: {
         wvous-bl-corner = 1;
         wvous-br-corner = 1;
       };
-      CustomUserPreferences."com.microsoft.VSCode"."ApplePressAndHoldEnabled" =
-        false;
+      CustomUserPreferences."com.microsoft.VSCode"."ApplePressAndHoldEnabled" = false;
       screencapture.location = "/tmp";
       NSGlobalDomain."com.apple.swipescrolldirection" = false;
     };

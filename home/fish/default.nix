@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs = {
     nix-index-database.comma.enable = true;
     nix-index.enable = true;
@@ -32,11 +33,11 @@
         cat = "${bat}/bin/bat --paging never ";
         "ai" = "gh copilot suggest";
         "ssh" = "kitten ssh";
-        "today" = ''
-          icalBuddy -f -iep "title,datetime" -po "datetime,title" -df "%RD" eventsToday'';
+        "today" = ''icalBuddy -f -iep "title,datetime" -po "datetime,title" -df "%RD" eventsToday'';
       };
-      shellAbbrs = {"lc" = "cd ~/Code/leetcode/ && nvim lc";};
-
+      shellAbbrs = {
+        "lc" = "cd ~/Code/leetcode/ && nvim lc";
+      };
       plugins = with pkgs.fishPlugins; [
         {
           name = "pure";

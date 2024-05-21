@@ -3,6 +3,7 @@ return {
   opts = {
     linters_by_ft = {
       sh = { "shellcheck" },
+      nix = { "statix" },
     }
   }
 }

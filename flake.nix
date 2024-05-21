@@ -10,33 +10,34 @@
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    darwin,
-    home-manager,
-    nix-index-database,
-    ...
-  } @ inputs: let
-    user = "ved";
-    overlays = [];
-    mkSystem = import ./lib/mkSystem.nix {
-      inherit overlays nixpkgs inputs;
+  outputs =
+    {
+      self,
+      nixpkgs,
+      darwin,
+      home-manager,
+      nix-index-database,
+      ...
+    }@inputs:
+    let
+      user = "ved";
+      overlays = [ ];
+      mkSystem = import ./lib/mkSystem.nix { inherit overlays nixpkgs inputs; };
+    in
+    {
+      darwinConfigurations.apollo = mkSystem "apollo" {
+        inherit user;
+        system = "aarch64-darwin";
+        isDarwin = true;
+      };
+      nixosConfigurations.atlas = mkSystem "atlas" {
+        inherit user;
+        system = "x86_64-linux";
+      };
+      nixosConfigurations.hades = mkSystem "hades" {
+        inherit user;
+        system = "aarch64-linux";
+        enableHM = false;
+      };
     };
-  in {
-    darwinConfigurations.apollo = mkSystem "apollo" {
-      inherit user;
-      system = "aarch64-darwin";
-      isDarwin = true;
-    };
-    nixosConfigurations.atlas = mkSystem "atlas" {
-      inherit user;
-      system = "x86_64-linux";
-    };
-    nixosConfigurations.hades = mkSystem "hades" {
-      inherit user;
-      system = "aarch64-linux";
-      enableHM = false;
-    };
-  };
 }
