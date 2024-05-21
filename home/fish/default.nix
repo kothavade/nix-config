@@ -57,5 +57,5 @@
       ];
     };
   };
-  home.file.".config/fish/themes/gruvbox.theme".source = ./default.nix;
+  home.file.".config/fish/themes/gruvbox.theme".source = ./gruvbox.theme;
 }

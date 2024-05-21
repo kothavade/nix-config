@@ -19,44 +19,24 @@
     ...
   } @ inputs: let
     user = "ved";
-  in {
-    darwinConfigurations.apollo = darwin.lib.darwinSystem {
-      system = "aarch64-darwin";
-      specialArgs = inputs;
-      modules = [
-        ./modules/common
-        ./modules/darwin
-        home-manager.darwinModules.home-manager
-        {
-          users.users.${user} = {
-            name = user;
-            home = "/Users/${user}";
-          };
-          home-manager.users.${user} = {
-            imports = [
-              ./home
-              ./home/darwin.nix
-              nix-index-database.hmModules.nix-index
-            ];
-            home.stateVersion = "24.05";
-          };
-        }
-      ];
+    overlays = [];
+    mkSystem = import ./lib/mkSystem.nix {
+      inherit overlays nixpkgs inputs;
     };
-
-    nixosConfigurations.hades = nixpkgs.lib.nixosSystem {
+  in {
+    darwinConfigurations.apollo = mkSystem "apollo" {
+      inherit user;
+      system = "aarch64-darwin";
+      isDarwin = true;
+    };
+    nixosConfigurations.atlas = mkSystem "atlas" {
+      inherit user;
+      system = "x86_64-linux";
+    };
+    nixosConfigurations.hades = mkSystem "hades" {
+      inherit user;
       system = "aarch64-linux";
-      specialArgs = inputs;
-      modules = [
-        {
-          users.users.${user} = {
-            isNormalUser = true;
-            extraGroups = ["wheel"];
-          };
-        }
-        ./modules/common
-        ./modules/hades
-      ];
+      enableHM = false;
     };
   };
 }

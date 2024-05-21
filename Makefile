@@ -1,9 +1,15 @@
-.PHONY: all run update clean del_auto clean_all git
+.PHONY: all switch update clean del_auto clean_all git
 
-all: update run git clean 
+all: update switch git clean 
 
-run:
-	nix run --log-format internal-json -v 2>&1 |nom --json
+OS := $(shell uname)
+
+switch:
+ifeq ($(OS), Darwin)
+	darwin-rebuild switch --flake .
+else ifeq ($(OS), Linux)
+	nixos-rebuild switch --flake .
+endif
 
 update:
 	nix flake update
