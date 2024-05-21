@@ -5,8 +5,6 @@ _: {
       auto-optimise-store = true
       extra-nix-path = nixpkgs=flake:nixpkgs
       experimental-features = nix-command flakes
-      keep-outputs = true
-      keep-derivations = true
     '';
   };
 

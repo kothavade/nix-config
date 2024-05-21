@@ -4,7 +4,6 @@ _: {
     ./fish
     ./git.nix
     ./packages.nix
-    ./vscode.nix
     ./neovim.nix
   ];
 }
