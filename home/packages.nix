@@ -20,7 +20,7 @@
     websocat
     bitwarden-cli
     awscli2
-    qmk
+    vial
     #- languages
     #-- sh
     shellcheck
@@ -29,6 +29,7 @@
     bun
     biome
     #-- c
+    gcc
     clang-tools
     #-- nix
     nil

@@ -1,25 +1,29 @@
-{ config, lib, pkgs, modulesPath, ... }:
-
 {
-  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
+  config,
+  lib,
+  pkgs,
+  modulesPath,
+  ...
+}: {
+  imports = [(modulesPath + "/installer/scan/not-detected.nix")];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [ ];
+  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
+  boot.initrd.kernelModules = [];
+  boot.kernelModules = ["kvm-amd"];
+  boot.extraModulePackages = [];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/b386e156-a293-4394-913b-74952a5f6298";
-      fsType = "ext4";
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/b386e156-a293-4394-913b-74952a5f6298";
+    fsType = "ext4";
+  };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/6951-457B";
-      fsType = "vfat";
-      options = [ "fmask=0022" "dmask=0022" ];
-    };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/6951-457B";
+    fsType = "vfat";
+    options = ["fmask=0022" "dmask=0022"];
+  };
 
-  swapDevices = [ ];
+  swapDevices = [];
 
   networking.useDHCP = lib.mkDefault true;
   services.tailscale.useRoutingFeatures = "both";
@@ -46,7 +50,6 @@
 
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = ["nvidia"];
-
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -99,9 +102,10 @@
   users.users.ved = {
     isNormalUser = true;
     description = "Ved Kothavade";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
       kate
+      plasma5Packages.polonium
     ];
   };
 
