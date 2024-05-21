@@ -33,15 +33,17 @@ osSystemFn {
     (
       if enableHM then
         {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.${user} = {
-            imports = [
-              homeConfig
-              osHomeConfig
-              inputs.nix-index-database.hmModules.nix-index
-            ];
-            home.stateVersion = "24.05";
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            users.${user} = {
+              imports = [
+                homeConfig
+                osHomeConfig
+                inputs.nix-index-database.hmModules.nix-index
+              ];
+              home.stateVersion = "24.05";
+            };
           };
         }
       else
