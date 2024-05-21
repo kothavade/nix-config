@@ -8,7 +8,7 @@ switch:
 ifeq ($(OS), Darwin)
 	darwin-rebuild switch --flake .
 else ifeq ($(OS), Linux)
-	nixos-rebuild switch --flake .
+	sudo nixos-rebuild switch --flake .
 endif
 
 update:
