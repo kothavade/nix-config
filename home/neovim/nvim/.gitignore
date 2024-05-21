@@ -1,0 +1,9 @@
+tt.*
+.direnv/
+.tests
+doc/tags
+debug
+.repro
+foo.*
+*.log
+data

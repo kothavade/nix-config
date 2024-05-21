@@ -1,9 +1,9 @@
 _: {
   imports = [
+    ./packages.nix
+    ./git.nix
     ./kitty
     ./fish
-    ./git.nix
-    ./packages.nix
-    ./neovim.nix
+    ./neovim
   ];
 }

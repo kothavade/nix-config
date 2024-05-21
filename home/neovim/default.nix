@@ -7,4 +7,8 @@ _: {
     vimdiffAlias = true;
     extraLuaPackages = luaPkgs: with luaPkgs; [magick];
   };
+  home.file.".config/nvim" = {
+    recursive = true;
+    source = ./nvim;
+  };
 }
