@@ -35,6 +35,7 @@
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
+    extraPackages = [pkgs.nvidia-vaapi-driver];
   };
 
   hardware.nvidia = {
@@ -46,6 +47,12 @@
     open = false;
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
+  };
+
+  environment.variables = {
+    LIBDA_DRIVER_NAME = "nvidia";
+    MOZ_DISABLE_RDD_SANDBOX = "1";
+    NVD_BACKEND = "direct";
   };
 
   # Load nvidia driver for Xorg and Wayland
