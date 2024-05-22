@@ -137,6 +137,7 @@
       kate
       plasma5Packages.polonium
       kdePackages.plasma-browser-integration
+      wl-clipboard
     ];
   };
 
