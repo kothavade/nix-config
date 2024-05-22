@@ -24,6 +24,7 @@ return {
       },
       ruff_lsp = {},
       ocamllsp = {},
+      zls = {},
       -- TODO: basedpyright
       -- pyright = {},
     },
