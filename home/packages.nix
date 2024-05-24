@@ -23,6 +23,7 @@
       websocat
       bitwarden-cli
       awscli2
+      vial
       #- languages
       #-- sh
       shellcheck
@@ -45,12 +46,12 @@
       #-- python
       ruff-lsp
       #-- zig
-      zig
+      zigpkgs.master
       zls
       #-- golang
       go
       gopls
       gofumpt
     ]
-    ++ (if pkgs.stdenv.isDarwin then [ pkgs.vial ] else [ ]);
+    ++ (if pkgs.stdenv.isDarwin then [ ] else [ ]);
 }

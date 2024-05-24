@@ -15,7 +15,6 @@
         symbol_map        U+279c Arial Unicode MS
         modify_font       underline_thickness 1
         modify_font       underline_position 18
-        # font_size         12.0
         disable_ligatures cursor
 
         # mac
@@ -24,17 +23,17 @@
 
         # hotkeys
         map   cmd+t             new_tab_with_cwd
-        map   ctrl+t             new_tab_with_cwd
+        map   ctrl+t            new_tab_with_cwd
         map   cmd+l             next_layout
-        map   ctrl+l             next_layout
+        map   ctrl+l            next_layout
         map   kitty_mod+l       next_layout
         map   kitty_mod+t       new_tab_with_cwd
-        map   ctrl+t       new_tab_with_cwd
+        map   ctrl+t            new_tab_with_cwd
         map   kitty_mod+enter   launch --cwd=current --type=window
         map   ctrl+enter        launch --cwd=current --type=window
         map   cmd+enter         launch --cwd=current --type=window
         map   kitty_mod+e       kitten hints
-        map   ctrl+e       kitten hints
+        map   ctrl+e            kitten hints
         map   cmd+e             kitten hints
 
         # click on links to open

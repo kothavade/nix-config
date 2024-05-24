@@ -2,12 +2,10 @@
   config,
   lib,
   pkgs,
-  modulesPath,
   ...
 }:
 {
-  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
-
+  hardware.enableRedistributableFirmware = true;
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   boot = {
     initrd.availableKernelModules = [
@@ -23,8 +21,13 @@
     extraModulePackages = [ ];
 
     # Bootloader.
-    loader.systemd-boot.enable = true;
+    loader.systemd-boot.enable = lib.mkForce false;
     loader.efi.canTouchEfiVariables = true;
+
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/etc/secureboot";
+    };
   };
 
   fileSystems."/" = {
@@ -46,12 +49,28 @@
     hostName = "atlas";
     useDHCP = lib.mkDefault true;
     networkmanager.enable = true;
+    # NextDNS
+    nameservers = [
+      "45.90.28.0#499645.dns.nextdns.io"
+      "2a07:a8c0::#499645.dns.nextdns.io"
+      "45.90.30.0#499645.dns.nextdns.io"
+      "2a07:a8c1::#499645.dns.nextdns.io"
+    ];
   };
 
+  # Fixes Windows Dual Boot time
+  time.hardwareClockInLocalTime = true;
+
   services = {
+    resolved = {
+      enable = true;
+      domains = [ "~." ];
+      dnsovertls = "true";
+    };
+
     tailscale.useRoutingFeatures = "both";
 
-    # Enable the KDE Plasma Desktop Environment.
+    # Plasma 6
     displayManager.sddm.enable = true;
     displayManager.sddm.wayland.enable = true;
     desktopManager.plasma6.enable = true;
@@ -83,7 +102,7 @@
   };
 
   hardware = {
-    cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+    cpu.amd.updateMicrocode = true;
 
     opengl = {
       enable = true;
@@ -100,7 +119,9 @@
       powerManagement.finegrained = false;
       open = false;
       nvidiaSettings = true;
+      # TODO: is there a better option? (beta, production)
       package = config.boot.kernelPackages.nvidiaPackages.stable;
+      # TODO: nvidia-persistanced?
     };
     pulseaudio.enable = false;
   };
@@ -136,10 +157,10 @@
       "wheel"
     ];
     packages = with pkgs; [
-      kate
       plasma5Packages.polonium
       kdePackages.plasma-browser-integration
       wl-clipboard
+      wayland-utils
     ];
   };
 

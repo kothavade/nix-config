@@ -9,13 +9,13 @@ name:
   user,
   isDarwin ? false,
   enableHM ? true,
+  secureBoot ? false,
 }:
 let
   machineConfig = ../machines/${name}.nix;
   osConfig = if isDarwin then ../modules/darwin else ../modules/nixos;
   sharedConfig = ../modules/shared;
   homeConfig = ../home;
-  # osHomeConfig = ../home/darwin.nix;
   osHomeConfig = if isDarwin then ../home/darwin.nix else ../home/nixos.nix;
   osSystemFn = if isDarwin then inputs.darwin.lib.darwinSystem else nixpkgs.lib.nixosSystem;
   home-manager =
@@ -29,6 +29,7 @@ osSystemFn {
     machineConfig
     osConfig
     sharedConfig
+    (if secureBoot then inputs.lanzaboote.nixosModules.lanzaboote else { })
     (if enableHM then home-manager.home-manager else { })
     (
       if enableHM then
