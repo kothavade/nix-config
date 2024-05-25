@@ -132,6 +132,11 @@
     NVD_BACKEND = "direct";
   };
 
+  environment.plasma6.excludePackages = with pkgs.kdePackages; [
+    konsole
+    oxygen
+  ];
+
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_US.UTF-8";
     LC_IDENTIFICATION = "en_US.UTF-8";
@@ -159,6 +164,8 @@
     packages = with pkgs; [
       plasma5Packages.polonium
       kdePackages.plasma-browser-integration
+      kdePackages.kmail
+      stremio
       haruna
       wl-clipboard
       wayland-utils
