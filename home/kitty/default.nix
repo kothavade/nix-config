@@ -25,21 +25,18 @@
         modify_font       underline_position 18
 
         # hotkeys
-        map   cmd+t             new_tab_with_cwd
-        map   ctrl+t            new_tab_with_cwd
         map   cmd+l             next_layout
-        map   ctrl+l            next_layout
         map   kitty_mod+l       next_layout
-        map   kitty_mod+t       new_tab_with_cwd
+        map   cmd+t             new_tab_with_cwd
         map   ctrl+t            new_tab_with_cwd
         map   kitty_mod+enter   launch --cwd=current --type=window
         map   ctrl+enter        launch --cwd=current --type=window
         map   cmd+enter         launch --cwd=current --type=window
 
-        map   alt+n kitten pass_keys.py neighboring_window left   alt+n
-        map   alt+e kitten pass_keys.py neighboring_window bottom alt+e
-        map   alt+i kitten pass_keys.py neighboring_window top    alt+i
-        map   alt+o kitten pass_keys.py neighboring_window right  alt+o
+        map   alt+n kitten pass_keys.py left   alt+n
+        map   alt+e kitten pass_keys.py bottom alt+e
+        map   alt+i kitten pass_keys.py top    alt+i
+        map   alt+o kitten pass_keys.py right  alt+o
 
         # click on links to open
         mouse_map left click ungrabbed mouse_handle_click selection link prompt
