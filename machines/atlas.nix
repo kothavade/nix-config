@@ -159,6 +159,7 @@
     packages = with pkgs; [
       plasma5Packages.polonium
       kdePackages.plasma-browser-integration
+      haruna
       wl-clipboard
       wayland-utils
     ];
