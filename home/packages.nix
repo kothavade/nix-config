@@ -46,7 +46,7 @@
       #-- python
       ruff-lsp
       #-- zig
-      zigpkgs.master
+      zigpkgs.master-2024-05-05 # std.zip merged
       zls
       #-- golang
       go
