@@ -165,7 +165,6 @@
       plasma5Packages.polonium
       kdePackages.plasma-browser-integration
       kdePackages.kmail
-      stremio
       haruna
       wl-clipboard
       wayland-utils
