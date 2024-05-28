@@ -25,7 +25,10 @@ osSystemFn {
   inherit system;
   specialArgs = inputs;
   modules = [
-    { nixpkgs.overlays = overlays; }
+    {
+      nixpkgs.overlays = overlays;
+      nix.registry.nixpkgs.flake = inputs.nixpkgs;
+    }
     machineConfig
     osConfig
     sharedConfig

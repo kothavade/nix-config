@@ -25,6 +25,7 @@ return {
       ruff_lsp = {},
       ocamllsp = {},
       zls = {},
+      racket_langserver = {},
       -- TODO: basedpyright
       -- pyright = {},
     },
