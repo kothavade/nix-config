@@ -10,6 +10,7 @@ return {
       local lspkind = require("lspkind")
       opts.window = {
         completion = cmp.config.window.bordered({
+          border = "none",
           col_offset = -3,
           side_padding = 0,
           winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
@@ -27,7 +28,7 @@ return {
             symbol_map = { Copilot = "" },
           })(entry, vim_item)
           local strings = vim.split(kind.kind, "%s", { trimempty = true })
-          kind.kind = " " .. (strings[1] or "") .. " "
+          kind.kind = " " .. (strings[1] or " ") .. "  "
           kind.menu = "    (" .. (strings[2] or "") .. ")"
           return kind
         end,

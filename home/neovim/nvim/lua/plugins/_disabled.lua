@@ -7,13 +7,15 @@ local disabled = {
   "catppuccin",
   "akinsho/bufferline.nvim",
   "folke/noice.nvim",
-  "folke/neoconf.nvim",
+  "folke/noice.nvim",
+  "folke/tokyonight.nvim",
   "nvim-neo-tree/neo-tree.nvim",
   "kawre/leetcode.nvim",
   "rcarriga/nvim-notify",
   "linux-cultist/venv-selector.nvim",
   "persistence.nvim",
-  "echasnovski/mini.indentscope"
+  "echasnovski/mini.indentscope",
+  "echasnovski/mini.pairs",
 }
 
 local ret = {}

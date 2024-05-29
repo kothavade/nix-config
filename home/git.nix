@@ -14,9 +14,10 @@ in
     enable = true;
     userName = "Ved Kothavade";
     userEmail = "ved@kothavade.com";
-    difftastic = {
+    delta = {
       enable = true;
-      display = "inline";
+      options.side-by-side = true;
+      options.features = "navigate";
     };
     ignores = [
       "**/.idea/"
