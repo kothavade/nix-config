@@ -6,9 +6,6 @@
       #- system
       gnumake
       #- tools
-      devenv
-      docker
-      sccache
       yt-dlp
       wget
       htop
@@ -31,7 +28,7 @@
       nodejs_20
       bun
       #-- c
-      gcc
+      gcc # necessary?
       clang-tools
       #-- nix
       nil
@@ -48,10 +45,6 @@
       #-- zig
       zigpkgs.master-2024-05-05 # std.zip merged
       zls
-      #-- golang
-      go
-      gopls
-      gofumpt
     ]
-    ++ (if pkgs.stdenv.isDarwin then [ ] else [ ]);
+    ++ (if pkgs.stdenv.isDarwin then [ docker ] else [ wl-clipboard ]);
 }

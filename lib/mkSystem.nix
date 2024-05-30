@@ -23,7 +23,9 @@ let
 in
 osSystemFn {
   inherit system;
-  specialArgs = inputs;
+  specialArgs = {
+    inherit inputs;
+  };
   modules = [
     {
       nixpkgs.overlays = overlays;
@@ -44,7 +46,6 @@ osSystemFn {
               imports = [
                 homeConfig
                 osHomeConfig
-                inputs.nix-index-database.hmModules.nix-index
               ];
               home.stateVersion = "24.05";
             };
@@ -56,6 +57,9 @@ osSystemFn {
     (
       if (enableHM && isDarwin) then
         {
+          home-manager.users.${user} = {
+            imports = [ inputs.nix-index-database.hmModules.nix-index ];
+          };
           users.users.${user} = {
             name = user;
             home = "/Users/${user}";

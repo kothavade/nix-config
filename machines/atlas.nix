@@ -61,6 +61,8 @@
   # Fixes Windows Dual Boot time
   time.hardwareClockInLocalTime = true;
 
+  programs.hyprland.enable = true;
+
   services = {
     resolved = {
       enable = true;
@@ -73,7 +75,7 @@
     # Plasma 6
     displayManager.sddm.enable = true;
     displayManager.sddm.wayland.enable = true;
-    desktopManager.plasma6.enable = true;
+    # desktopManager.plasma6.enable = true;
 
     xserver = {
       # Load nvidia driver for Xorg and Wayland
@@ -121,7 +123,6 @@
       nvidiaSettings = true;
       # TODO: is there a better option? (beta, production)
       package = config.boot.kernelPackages.nvidiaPackages.beta;
-      # TODO: nvidia-persistanced?
     };
     pulseaudio.enable = false;
   };
@@ -130,12 +131,10 @@
     LIBDA_DRIVER_NAME = "nvidia";
     MOZ_DISABLE_RDD_SANDBOX = "1";
     NVD_BACKEND = "direct";
+    XDG_SESSION_TYPE = "wayland";
+    GBM_BACKEND = "nvidia-drm";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
   };
-
-  environment.plasma6.excludePackages = with pkgs.kdePackages; [
-    konsole
-    oxygen
-  ];
 
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_US.UTF-8";
@@ -162,12 +161,10 @@
       "wheel"
     ];
     packages = with pkgs; [
-      plasma5Packages.polonium
-      kdePackages.plasma-browser-integration
-      kdePackages.kmail
-      haruna
-      wl-clipboard
-      wayland-utils
+      # plasma5Packages.polonium
+      # kdePackages.plasma-browser-integration
+      # kdePackages.kmail
+      # haruna
     ];
   };
 
