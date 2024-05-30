@@ -120,7 +120,7 @@
       open = false;
       nvidiaSettings = true;
       # TODO: is there a better option? (beta, production)
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
       # TODO: nvidia-persistanced?
     };
     pulseaudio.enable = false;
