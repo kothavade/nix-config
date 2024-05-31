@@ -1,4 +1,8 @@
 { pkgs, ... }:
+let
+  bemenu = pkgs.bemenu.override { x11Support = false; };
+  prismlauncher = pkgs.prismlauncher.override { withWaylandGLFW = true; };
+in
 {
   home.packages =
     with pkgs;
@@ -46,5 +50,24 @@
       zigpkgs.master-2024-05-05 # std.zip merged
       zls
     ]
-    ++ (if pkgs.stdenv.isDarwin then [ docker ] else [ wl-clipboard ]);
+    ++ (
+      if pkgs.stdenv.isDarwin then
+        [ docker ]
+      else
+        [
+          wl-clipboard
+          waybar
+          playerctl
+          mako
+          hyprpaper
+          mpv
+          pavucontrol
+          bemenu
+          j4-dmenu-desktop
+          zip
+          unzip
+          wlsunset
+          prismlauncher
+        ]
+    );
 }

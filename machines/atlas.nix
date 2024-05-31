@@ -60,8 +60,10 @@
 
   # Fixes Windows Dual Boot time
   time.hardwareClockInLocalTime = true;
-
-  programs.hyprland.enable = true;
+  programs = {
+    hyprland.enable = true;
+    firefox.enable = true;
+  };
 
   services = {
     resolved = {
@@ -75,7 +77,6 @@
     # Plasma 6
     displayManager.sddm.enable = true;
     displayManager.sddm.wayland.enable = true;
-    # desktopManager.plasma6.enable = true;
 
     xserver = {
       # Load nvidia driver for Xorg and Wayland
@@ -160,15 +161,7 @@
       "networkmanager"
       "wheel"
     ];
-    packages = with pkgs; [
-      # plasma5Packages.polonium
-      # kdePackages.plasma-browser-integration
-      # kdePackages.kmail
-      # haruna
-    ];
   };
-
-  programs.firefox.enable = true;
 
   fonts.packages = with pkgs; [ inter ];
 }

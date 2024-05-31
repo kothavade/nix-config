@@ -41,6 +41,7 @@
         # click on links to open
         mouse_map left click ungrabbed mouse_handle_click selection link prompt
 
+        # theme
         include                 gruvbox.conf
       ''
       + (

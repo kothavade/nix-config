@@ -15,6 +15,9 @@ _: {
       extra-nix-path = nixpkgs=flake:nixpkgs
     '';
   };
+  nixpkgs.config = {
+    allowUnfree = true;
+  };
   programs.fish.enable = true;
   programs.zsh.enable = true;
 }

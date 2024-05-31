@@ -3,6 +3,10 @@
 -- Add any additional options here
 vim.g.lazyvim_python_lsp = "basedpyright"
 -- https://x.com/mitchellh/status/1787180650782703989
-vim.o.termsync = false
+vim.opt.termsync = false
 -- Opaque completion
-vim.o.pumblend = 0
+vim.opt.pumblend = 0
+-- Hyprlang
+vim.filetype.add({
+  pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
+})
