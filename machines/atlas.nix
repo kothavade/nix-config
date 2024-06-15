@@ -20,9 +20,11 @@
     kernelModules = [ "kvm-amd" ];
     extraModulePackages = [ ];
 
-    # Bootloader.
-    loader.systemd-boot.enable = lib.mkForce false;
-    loader.efi.canTouchEfiVariables = true;
+    loader = {
+      systemd-boot.enable = lib.mkForce false;
+      systemd-boot.configurationLimit = 3;
+      efi.canTouchEfiVariables = true;
+    };
 
     lanzaboote = {
       enable = true;
@@ -72,9 +74,9 @@
       dnsovertls = "true";
     };
 
+    openssh.enable = true;
     tailscale.useRoutingFeatures = "both";
 
-    # Plasma 6
     displayManager.sddm.enable = true;
     displayManager.sddm.wayland.enable = true;
 

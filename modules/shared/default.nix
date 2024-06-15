@@ -1,5 +1,10 @@
 _: {
   nix = {
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 3d";
+    };
     settings = {
       trusted-users = [
         "root"
@@ -19,5 +24,4 @@ _: {
     allowUnfree = true;
   };
   programs.fish.enable = true;
-  programs.zsh.enable = true;
 }

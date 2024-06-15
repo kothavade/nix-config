@@ -22,7 +22,7 @@
         set -g async_prompt_functions _pure_prompt_git
         set -Ux DIRENV_LOG_FORMAT ""
         set -U pure_symbol_prompt "λ"
-        set -U pure_symbol_reverse_prompt "λ"
+        set -U pure_symbol_reverse_prompt "Λ"
         set -U pure_enable_single_line_prompt true
         set -U pure_enable_nixdevshell true
         set -U pure_symbol_nixdevshell_prefix " "
@@ -52,6 +52,14 @@
         {
           name = "fzf-fish";
           inherit (fzf-fish) src;
+        }
+        {
+          name = "autopair";
+          inherit (autopair) src;
+        }
+        {
+          name = "sponge";
+          inherit (sponge) src;
         }
       ];
     };

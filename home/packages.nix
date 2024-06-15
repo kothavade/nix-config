@@ -22,7 +22,6 @@ in
       tree-sitter
       imagemagick
       websocat
-      bitwarden-cli
       awscli2
       vial
       #- languages
@@ -46,9 +45,6 @@ in
       typst-preview
       #-- python
       ruff-lsp
-      #-- zig
-      zigpkgs.master-2024-05-05 # std.zip merged
-      zls
     ]
     ++ (
       if pkgs.stdenv.isDarwin then
