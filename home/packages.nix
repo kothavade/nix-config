@@ -20,19 +20,18 @@ in
       fastfetch
       gh
       tree-sitter
-      imagemagick
-      websocat
+      # imagemagick
+      # websocat
       awscli2
-      vial
       #- languages
       #-- sh
       shellcheck
       #-- js
       nodejs_20
-      bun
+      # bun
       #-- c
       gcc # necessary?
-      clang-tools
+      # clang-tools
       #-- nix
       nil
       nixfmt-rfc-style
@@ -40,17 +39,19 @@ in
       #-- lua
       lua-language-server
       #-- typst
-      typst
-      typst-lsp
-      typst-preview
+      # typst
+      # typst-lsp
+      # typst-preview
       #-- python
-      ruff-lsp
+      # ruff-lsp
     ]
     ++ (
       if pkgs.stdenv.isDarwin then
-        [ docker ]
+        # [ docker ]
+	[ ]
       else
         [
+	  vial
           wl-clipboard
           waybar
           playerctl

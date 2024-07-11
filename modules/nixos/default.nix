@@ -9,5 +9,10 @@ _: {
     Defaults env_reset,pwfeedback
   '';
 
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 3d";
+  };
   system.stateVersion = "24.05";
 }

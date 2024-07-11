@@ -7,39 +7,28 @@ _: {
       cleanup = "zap";
       upgrade = true;
     };
-    brews = [ "ical-buddy" ];
-    taps = [
-      "mrkai77/cask"
-      "homebrew/cask-fonts"
-      "homebrew/cask-versions"
-    ];
     casks = [
       # system
       "raycast"
       "karabiner-elements"
-      "middleclick"
       "itsycal"
       "iina"
       "keka"
-      "loop"
-      "amethyst"
       "vial"
       # dev
-      "orbstack"
+      # "orbstack"
       "tailscale"
       "visual-studio-code"
       # browsers
-      "firefox-developer-edition"
-      "google-chrome"
-      "microsoft-edge"
+      # "firefox-developer-edition"
+      # "google-chrome"
+      "brave-browser"
       # games
-      "steam"
+      # "steam"
       # communication
       "zoom"
       # security
-      "lulu"
-      # fonts
-      "font-linux-biolinum"
+      # "lulu"
     ];
     masApps = {
       "wireguard" = 1451685025;

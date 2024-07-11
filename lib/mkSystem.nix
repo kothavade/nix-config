@@ -57,9 +57,6 @@ osSystemFn {
     (
       if (enableHM && isDarwin) then
         {
-          home-manager.users.${user} = {
-            imports = [ inputs.nix-index-database.hmModules.nix-index ];
-          };
           users.users.${user} = {
             name = user;
             home = "/Users/${user}";

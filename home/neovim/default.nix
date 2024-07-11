@@ -5,7 +5,6 @@ _: {
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
-    extraLuaPackages = luaPkgs: with luaPkgs; [ magick ];
   };
   home.file.".config/nvim" = {
     recursive = true;
