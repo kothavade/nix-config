@@ -49,6 +49,7 @@
     vim
     git
     gnumake
+    deno
   ];
 
   networking.hostName = "hades";
