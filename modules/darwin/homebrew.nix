@@ -19,6 +19,7 @@ _: {
       # "orbstack"
       "tailscale"
       "visual-studio-code"
+      "zed"
       # browsers
       # "firefox-developer-edition"
       # "google-chrome"
