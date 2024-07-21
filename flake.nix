@@ -44,7 +44,6 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
-        flake-utils.follows = "flake-utils";
         flake-compat.follows = "flake-compat";
         pre-commit-hooks-nix.follows = "";
       };
