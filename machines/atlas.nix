@@ -109,9 +109,9 @@
   hardware = {
     cpu.amd.updateMicrocode = true;
 
-    opengl = {
+    graphics = {
       enable = true;
-      driSupport32Bit = true;
+      enable32Bit = true;
       extraPackages = [ pkgs.nvidia-vaapi-driver ];
     };
 
