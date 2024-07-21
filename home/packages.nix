@@ -1,7 +1,6 @@
 { pkgs, ... }:
 let
   bemenu = pkgs.bemenu.override { x11Support = false; };
-  prismlauncher = pkgs.prismlauncher.override { withWaylandGLFW = true; };
 in
 {
   home.packages =
@@ -48,10 +47,10 @@ in
     ++ (
       if pkgs.stdenv.isDarwin then
         # [ docker ]
-	[ ]
+        [ ]
       else
         [
-	  vial
+          vial
           wl-clipboard
           waybar
           playerctl
@@ -64,7 +63,8 @@ in
           zip
           unzip
           wlsunset
-          prismlauncher
+          zed-editor
+          brave
         ]
     );
 }
