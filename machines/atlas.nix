@@ -111,7 +111,6 @@
 
     opengl = {
       enable = true;
-      driSupport = true;
       driSupport32Bit = true;
       extraPackages = [ pkgs.nvidia-vaapi-driver ];
     };
@@ -152,7 +151,6 @@
   };
 
   # Enable sound with pipewire.
-  sound.enable = true;
   security.rtkit.enable = true;
 
   # TODO: users in mkSystem instead
