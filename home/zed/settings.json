@@ -1,0 +1,72 @@
+// TODOS:
+// - symbols nerd font fallback
+// - terminal split without moving to center
+// - open terminal in project directory
+{
+  "outline_panel": {
+    "dock": "right"
+  },
+  "project_panel": {
+    "dock": "right"
+  },
+  "inline_completions": {
+    "disabled_globs": [".env", "app/server.c"]
+  },
+  "autosave": "on_focus_change",
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "vim_mode": true,
+  "unstable.ui_density": "compact",
+  "ui_font_size": 14,
+  "ui_font_family": "System Font",
+  "buffer_font_size": 12,
+  "buffer_font_family": "Berkeley Mono",
+  "buffer_font_features": {
+    "calt": true,
+    "liga": true
+  },
+  "inlay_hints": {
+    "enabled": true
+  },
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "Gruvbox Dark Hard"
+  },
+  "terminal": {
+    "shell": {
+      "program": "/etc/profiles/per-user/ved/bin/fish"
+    },
+    "dock": "right"
+  },
+  "languages": {
+    "C": {
+      "format_on_save": "off",
+      "formatter": {
+        "external": {
+          "command": "clang-format",
+          "arguments": ["{buffer_path}"]
+        }
+      }
+    },
+    "HTML": {
+      "prettier": {
+        "allowed": false
+      }
+    }
+  },
+  "chat_panel": {
+    "button": false
+  },
+  "assistant": {
+    "button": false
+  },
+  "notification_panel": {
+    "button": false
+  },
+  "collaboration_panel": {
+    "button": false
+  }
+}

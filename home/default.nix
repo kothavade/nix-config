@@ -5,5 +5,6 @@ _: {
     ./kitty
     ./fish
     ./neovim
+    ./zed
   ];
 }
