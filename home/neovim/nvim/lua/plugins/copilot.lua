@@ -28,7 +28,7 @@ return {
   {
     "folke/which-key.nvim",
     opts = {
-      defaults = {
+      spec = {
         ["<leader>a"] = { name = "+ai" }
       }
     },
