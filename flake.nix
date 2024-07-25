@@ -3,7 +3,7 @@
     { self, nixpkgs, ... }@inputs:
     let
       user = "ved";
-      overlays = [ inputs.zig.overlays.default ];
+      overlays = [ ];
       mkSystem = import ./lib/mkSystem.nix { inherit overlays nixpkgs inputs; };
     in
     {
@@ -37,7 +37,7 @@
     flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
     flake-compat.url = "github:edolstra/flake-compat";
     flake-compat.flake = false;
-    flake-utils.url = "github:numtide/flake-utils";
+    # flake-utils.url = "github:numtide/flake-utils";
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
@@ -46,14 +46,6 @@
         flake-parts.follows = "flake-parts";
         flake-compat.follows = "flake-compat";
         pre-commit-hooks-nix.follows = "";
-      };
-    };
-    zig = {
-      url = "github:mitchellh/zig-overlay";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-compat.follows = "flake-compat";
-        flake-utils.follows = "flake-utils";
       };
     };
   };

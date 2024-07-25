@@ -32,7 +32,8 @@ in
       gcc # necessary?
       # clang-tools
       #-- nix
-      nil
+      # nil
+      nixd
       nixfmt-rfc-style
       statix
       #-- lua

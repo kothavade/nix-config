@@ -18,7 +18,19 @@ return {
             }
           }
         },
-        nil_ls = {},
+        nixd = {
+          cmd = { "nixd" },
+          settings = {
+            nixd = {
+              nixkgs = { expr = "import <nixpkgs> {}" },
+              formatting = { command = { "nixfmt" } },
+              options = {
+                nixos = { expr = '(builtins.getFlake ("git+file://" + toString ./.)).nixosConfigurations.atlas.options', },
+                -- home_manager = { expr = '(builtins.getFlake ("git+file://" + toString ./.)).homeConfigurations."ved".options', },
+              },
+            },
+          }
+        },
         astro = {},
         typst_lsp = {
           root_dir = function()
@@ -47,9 +59,6 @@ return {
             }
           },
         },
-        racket_langserver = {},
-        -- TODO: basedpyright
-        -- pyright = {},
       },
     })
   end,
