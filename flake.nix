@@ -1,6 +1,6 @@
 {
   outputs =
-    { self, nixpkgs, ... }@inputs:
+    { nixpkgs, ... }@inputs:
     let
       user = "ved";
       overlays = [ ];

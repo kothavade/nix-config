@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  bemenu = pkgs.bemenu.override { x11Support = false; };
+  bemenuWayland = pkgs.bemenu.override { x11Support = false; };
 in
 {
   home.packages =
@@ -32,7 +32,6 @@ in
       gcc # necessary?
       # clang-tools
       #-- nix
-      # nil
       nixd
       nixfmt-rfc-style
       statix
@@ -46,7 +45,7 @@ in
       # ruff-lsp
     ]
     ++ (
-      if pkgs.stdenv.isDarwin then
+      if stdenv.isDarwin then
         # [ docker ]
         [ ]
       else
@@ -59,7 +58,7 @@ in
           hyprpaper
           mpv
           pavucontrol
-          bemenu
+          bemenuWayland
           j4-dmenu-desktop
           zip
           unzip
