@@ -1,9 +1,12 @@
 # Nix Config
 
-My Nix configuration for macOS (Darwin) and Linux.
+My Nix configuration for macOS and Linux.
 
 Manages system settings, installed programs, application configuration, and more.
 
-Built using [nix-darwin](https://github.com/LnL7/nix-darwin), [home-manager](https://github.com/nix-community/home-manager), and [nixos-flake](https://github.com/srid/nixos-flake).
+Using:
+- [NixOS](https://nixos.org/)
+- [nix-darwin](https://github.com/LnL7/nix-darwin)
+- [home-manager](https://github.com/nix-community/home-manager)
 
-Run with `make all`.
+Switch with `make switch`.
