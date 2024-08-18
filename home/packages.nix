@@ -21,7 +21,7 @@ in
       tree-sitter
       # imagemagick
       # websocat
-      awscli2
+      # awscli2 # FIXME: doesn't build
       #- languages
       #-- sh
       shellcheck
@@ -42,7 +42,8 @@ in
       # typst-lsp
       # typst-preview
       #-- python
-      # ruff-lsp
+      ruff
+      basedpyright
     ]
     ++ (
       if stdenv.isDarwin then

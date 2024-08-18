@@ -15,7 +15,7 @@ in
     userName = "Ved Kothavade";
     userEmail = "ved@kothavade.com";
     delta = {
-      enable = true;
+      enable = false; # TODO: until https://nixpkgs-tracker.ocfox.me/?pr=334814 is merged for nixos-unstable
       options.side-by-side = true;
       options.features = "navigate";
     };
