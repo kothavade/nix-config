@@ -63,9 +63,9 @@ in
           j4-dmenu-desktop
           zip
           unzip
-          wlsunset
           zed-editor
           brave
+          killall
         ]
     );
 }

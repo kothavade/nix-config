@@ -49,7 +49,7 @@
   swapDevices = [ ];
   networking = {
     hostName = "atlas";
-    useDHCP = lib.mkDefault true;
+    useDHCP = true;
     networkmanager.enable = true;
     # NextDNS
     nameservers = [
@@ -123,8 +123,7 @@
       powerManagement.finegrained = false;
       open = false;
       nvidiaSettings = true;
-      # TODO: is there a better option? (beta, production)
-      package = config.boot.kernelPackages.nvidiaPackages.beta;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
     pulseaudio.enable = false;
   };
