@@ -129,7 +129,7 @@
   };
 
   environment.variables = {
-    LIBDA_DRIVER_NAME = "nvidia";
+    LIBVA_DRIVER_NAME = "nvidia";
     MOZ_DISABLE_RDD_SANDBOX = "1";
     NVD_BACKEND = "direct";
     XDG_SESSION_TYPE = "wayland";

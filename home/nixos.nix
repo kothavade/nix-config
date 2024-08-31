@@ -46,7 +46,8 @@
     settings = {
       "$mod" = "SUPER";
       "$pip" = "class:^(firefox)$, title:^(Firefox|Picture-in-Picture)$";
-      exec-onece = [ "waybar" ];
+      cursor.no_hardware_cursors = true;
+      exec-once = [ "waybar" ];
       monitor = "DP-1, 2560x1440@170, 0x0, 1";
       general = {
         gaps_in = 0;
@@ -76,8 +77,7 @@
         ];
       };
       dwindle = {
-        pseudotitle = true;
-        preseve_split = true;
+        preserve_split = true;
       };
       misc = {
         force_default_wallpaper = 1;
