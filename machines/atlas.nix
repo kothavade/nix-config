@@ -49,7 +49,7 @@
   swapDevices = [ ];
   networking = {
     hostName = "atlas";
-    useDHCP = true;
+    useDHCP = lib.mkDefault true;
     networkmanager.enable = true;
     # NextDNS
     nameservers = [
