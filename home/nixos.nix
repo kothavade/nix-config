@@ -100,8 +100,8 @@
       ];
       bind =
         [
-          "$mod SHIFT, ENTER, exec, firefox"
-          "$mod, ENTER, exec, kitty -1"
+          "$mod SHIFT, RETURN, exec, firefox"
+          "$mod, RETURN, exec, kitty -1"
           "$mod, Q, killactive"
           "$mod, N, movefocus, l"
           "$mod, E, movefocus, d"
