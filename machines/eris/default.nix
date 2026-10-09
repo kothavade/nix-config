@@ -6,6 +6,26 @@
   boot.tmp.cleanOnBoot = true;
   zramSwap.enable = true;
 
+  # comin switches in place, but a new kernel/initrd only applies on boot. Reboot overnight if
+  # the boot default (which comin's `switch` updates, not `testing-*` deploys) differs from what
+  # booted; same check as system.autoUpgrade.allowReboot.
+  systemd.services.reboot-if-needed = {
+    description = "Reboot if the boot default has a new kernel or initrd";
+    serviceConfig.Type = "oneshot";
+    script = ''
+      booted="$(readlink /run/booted-system/{initrd,kernel,kernel-modules})"
+      built="$(readlink /nix/var/nix/profiles/system/{initrd,kernel,kernel-modules})"
+      if [ "$booted" != "$built" ]; then
+        echo "kernel/initrd changed, rebooting"
+        systemctl reboot
+      fi
+    '';
+  };
+  systemd.timers.reboot-if-needed = {
+    wantedBy = [ "timers.target" ];
+    timerConfig.OnCalendar = "*-*-* 04:00:00";
+  };
+
   # Workaround for https://github.com/NixOS/nix/issues/8502
   services.logrotate.checkConfig = false;
 
