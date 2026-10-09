@@ -1,11 +1,4 @@
+# Shared by every machine.
 _: {
-  imports = [
-    ./packages.nix
-    ./git.nix
-    ./direnv
-    ./kitty
-    ./fish
-    ./neovim
-    ./zed
-  ];
+  imports = [ ./fish ];
 }

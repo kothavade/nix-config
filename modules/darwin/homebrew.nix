@@ -1,38 +1,24 @@
+# Shared by every Mac. Per-machine casks live in machines/<name>.nix.
 _: {
   homebrew = {
     enable = true;
-    # global.autoUpdate = false;
     onActivation = {
       autoUpdate = true;
+      # Anything not listed here (or in the machine file) is uninstalled on switch.
       cleanup = "zap";
       upgrade = true;
     };
     casks = [
-      # system
-      "raycast"
-      "karabiner-elements"
-      "itsycal"
+      "bitwarden"
+      "claude-code"
+      "ghostty@tip"
+      "helium-browser"
       "iina"
-      "keka"
-      "vial"
-      # dev
-      # "orbstack"
-      "tailscale"
-      "visual-studio-code"
+      "karabiner-elements"
+      "obsidian"
+      "raycast"
       "zed"
-      # browsers
-      # "firefox-developer-edition"
-      # "google-chrome"
-      "brave-browser"
-      # games
-      # "steam"
-      # communication
       "zoom"
-      # security
-      # "lulu"
     ];
-    masApps = {
-      "wireguard" = 1451685025;
-    };
   };
 }

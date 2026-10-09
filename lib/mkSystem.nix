@@ -1,69 +1,47 @@
 {
   nixpkgs,
-  overlays,
   inputs,
 }:
 name:
 {
   system,
   user,
+  machine,
+  homeStateVersion,
   isDarwin ? false,
-  enableHM ? true,
-  secureBoot ? false,
 }:
 let
-  machineConfig = ../machines/${name}.nix;
-  osConfig = if isDarwin then ../modules/darwin else ../modules/nixos;
-  sharedConfig = ../modules/shared;
-  homeConfig = ../home;
-  osHomeConfig = if isDarwin then ../home/darwin.nix else ../home/nixos.nix;
   osSystemFn = if isDarwin then inputs.darwin.lib.darwinSystem else nixpkgs.lib.nixosSystem;
   home-manager =
     if isDarwin then inputs.home-manager.darwinModules else inputs.home-manager.nixosModules;
+  comin = if isDarwin then inputs.comin.darwinModules else inputs.comin.nixosModules;
 in
 osSystemFn {
-  inherit system;
   specialArgs = {
-    inherit inputs;
+    inherit inputs user;
   };
   modules = [
     {
-      nixpkgs.overlays = overlays;
+      nixpkgs.hostPlatform = system;
       nix.registry.nixpkgs.flake = inputs.nixpkgs;
+      networking.hostName = name;
     }
-    machineConfig
-    osConfig
-    sharedConfig
-    (if secureBoot then inputs.lanzaboote.nixosModules.lanzaboote else { })
-    (if enableHM then home-manager.home-manager else { })
-    (
-      if enableHM then
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            users.${user} = {
-              imports = [
-                homeConfig
-                osHomeConfig
-              ];
-              home.stateVersion = "24.05";
-            };
-          };
-        }
-      else
-        { }
-    )
-    (
-      if (enableHM && isDarwin) then
-        {
-          users.users.${user} = {
-            name = user;
-            home = "/Users/${user}";
-          };
-        }
-      else
-        { }
-    )
+    machine
+    (if isDarwin then ../modules/darwin else ../modules/nixos)
+    ../modules/shared
+    comin.comin
+    home-manager.home-manager
+    {
+      home-manager = {
+        useGlobalPkgs = true;
+        useUserPackages = true;
+        # Move aside unmanaged dotfiles instead of refusing to switch.
+        backupFileExtension = "hm-bak";
+        users.${user} = {
+          imports = [ ../home ] ++ nixpkgs.lib.optional isDarwin ../home/darwin.nix;
+          home.stateVersion = homeStateVersion;
+        };
+      };
+    }
   ];
 }

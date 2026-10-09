@@ -1,0 +1,8 @@
+#!/bin/sh
+# Reject commits with unformatted staged .nix files. Fix with `nix fmt`.
+files=$(git diff --cached --name-only --diff-filter=ACM -- '*.nix')
+[ -z "$files" ] && exit 0
+echo "$files" | xargs nixfmt --check || {
+  echo "pre-commit: run 'nix fmt' and re-stage" >&2
+  exit 1
+}

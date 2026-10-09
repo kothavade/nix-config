@@ -1,11 +1,13 @@
-_: {
+{ user, ... }:
+{
+  imports = [ ./comin.nix ];
+
   nix = {
     settings = {
       trusted-users = [
         "root"
-        "ved"
+        user
       ];
-      auto-optimise-store = true;
       experimental-features = [
         "nix-command"
         "flakes"
@@ -14,9 +16,8 @@ _: {
     extraOptions = ''
       extra-nix-path = nixpkgs=flake:nixpkgs
     '';
+    optimise.automatic = true;
   };
-  nixpkgs.config = {
-    allowUnfree = true;
-  };
+  nixpkgs.config.allowUnfree = true;
   programs.fish.enable = true;
 }

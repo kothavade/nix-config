@@ -1,5 +1,10 @@
 { pkgs, ... }:
 {
+  home.packages = with pkgs; [
+    bat
+    fzf
+    fd
+  ];
   programs = {
     zoxide = {
       enable = true;
@@ -7,7 +12,6 @@
     };
     lsd = {
       enable = true;
-      enableAliases = true;
       settings.hyperlink = "auto";
     };
     fish = {
@@ -21,16 +25,10 @@
         set -U pure_symbol_reverse_prompt "Λ"
         set -U pure_enable_single_line_prompt true
         set -U pure_enable_nixdevshell true
-        set -U pure_symbol_nixdevshell_prefix " "
+        set -U pure_symbol_nixdevshell_prefix " "
       '';
-      shellAliases = with pkgs; {
-        cat = "${bat}/bin/bat --paging never ";
-        "ai" = "gh copilot suggest";
-        "ssh" = "kitten ssh";
-        "today" = ''icalBuddy -f -iep "title,datetime" -po "datetime,title" -df "%RD" eventsToday'';
-      };
-      shellAbbrs = {
-        "lc" = "cd ~/Code/leetcode/ && nvim lc";
+      shellAliases = {
+        cat = "bat --paging never";
       };
       plugins = with pkgs.fishPlugins; [
         {
@@ -60,5 +58,4 @@
       ];
     };
   };
-  home.file.".config/fish/themes/gruvbox.theme".source = ./gruvbox.theme;
 }

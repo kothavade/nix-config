@@ -1,37 +1,24 @@
-{ pkgs, ... }:
-let
-  credential =
-    if pkgs.stdenv.isDarwin then
-      "osxkeychain"
-    # TODO: Research libsecret or netrc as encrypted alt to store
-    # https://stackoverflow.com/questions/53305965/whats-the-best-encrypted-git-credential-helper-for-linux
-    # https://stackoverflow.com/questions/18838579/how-to-store-your-github-https-password-on-linux-in-a-terminal-keychain
-    else
-      "store";
-in
-{
+_: {
   programs.git = {
     enable = true;
-    userName = "Ved Kothavade";
-    userEmail = "ved@kothavade.com";
-    delta = {
-      enable = false; # TODO: until https://nixpkgs-tracker.ocfox.me/?pr=334814 is merged for nixos-unstable
-      options.side-by-side = true;
-      options.features = "navigate";
-    };
     ignores = [
       "**/.idea/"
       "**/.direnv/"
       "**/.DS_Store"
     ];
-    extraConfig = {
+    signing = {
+      format = "ssh";
+      # Bitwarden SSH agent key ("bw ssh key").
+      key = "key::ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJOAm1RLAlDnqjZeSuABKIpRERsIsWxJvtWh8YIPE8iU";
+      signByDefault = true;
+    };
+    settings = {
+      user.name = "Ved Kothavade";
+      user.email = "ved@kothavade.com";
       pull.ff = "only";
-      credential.helper = credential;
+      credential.helper = "osxkeychain";
       init.defaultBranch = "main";
       push.autoSetupRemote = true;
-      gpg.format = "ssh";
-      user.signingKey = "~/.ssh/id_ed25519.pub";
-      commit.gpgsign = true;
     };
   };
 }
