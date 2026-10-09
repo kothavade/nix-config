@@ -3,10 +3,12 @@ _: {
   homebrew = {
     enable = true;
     onActivation = {
-      autoUpdate = true;
+      # Deploys run unattended (comin), where .pkg casks can't prompt for sudo, so they only
+      # add/remove casks. Upgrade interactively with `make upgrade`.
+      autoUpdate = false;
+      upgrade = false;
       # Anything not listed here (or in the machine file) is uninstalled on switch.
       cleanup = "zap";
-      upgrade = true;
     };
     casks = [
       "bitwarden"

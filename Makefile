@@ -1,4 +1,4 @@
-.PHONY: switch eris update clean
+.PHONY: switch eris update upgrade clean
 
 OS := $(shell uname)
 HOST := $(shell hostname -s)
@@ -17,6 +17,10 @@ eris:
 
 update:
 	nix flake update
+
+# Upgrade every Homebrew cask, including self-updating ones; .pkg casks prompt for sudo.
+upgrade:
+	brew update && brew upgrade --greedy
 
 clean:
 	sudo nix-collect-garbage --delete-old
