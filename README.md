@@ -30,7 +30,7 @@ Manual escape hatches:
 make switch   # the machine you're on, from the working tree
 make eris     # evaluate here, build + activate on eris
 make update   # bump flake inputs locally
-make upgrade  # upgrade all Homebrew casks (deploys only add/remove them)
+upgrade       # (fish, on Macs) upgrade all Homebrew casks; deploys only add/remove them
 ```
 
 `direnv allow` once to get nixfmt and the pre-commit hook; `nix fmt` formats everything.
