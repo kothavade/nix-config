@@ -21,7 +21,8 @@ within a minute. Push to `testing-<hostname>` to try something on one machine fi
 Inputs are bumped weekly by CI (`.github/workflows/update-flake-lock.yml`), which commits to
 `main` only if every machine still evaluates.
 
-Each machine needs a read-only GitHub token at `/etc/comin/github-token` (root, mode 600).
+Each machine needs its own read-only deploy key at `/etc/comin/deploy-key` (root, mode 600):
+`sudo install -d -m700 /etc/comin && sudo ssh-keygen -t ed25519 -N "" -C comin@$(hostname -s) -f /etc/comin/deploy-key && gh repo deploy-key add /etc/comin/deploy-key.pub -R kothavade/nix-config -t comin@$(hostname -s)`
 
 Manual escape hatches:
 
