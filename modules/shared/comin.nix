@@ -10,7 +10,11 @@ _: {
       {
         name = "origin";
         url = "git@github.com:kothavade/nix-config.git";
-        auth.ssh_deploy_key_path = "/etc/comin/deploy-key";
+        auth = {
+          ssh_deploy_key_path = "/etc/comin/deploy-key";
+          # comin uses this as the SSH user (default "comin"), ignoring the `git@` in the URL.
+          username = "git";
+        };
       }
     ];
   };
