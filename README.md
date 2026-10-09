@@ -22,7 +22,7 @@ Inputs are bumped weekly by CI (`.github/workflows/update-flake-lock.yml`), whic
 `main` only if every machine still evaluates.
 
 Each machine needs its own read-only deploy key at `/etc/comin/deploy-key` (root, mode 600):
-`sudo install -d -m700 /etc/comin && sudo ssh-keygen -t ed25519 -N "" -C comin@$(hostname -s) -f /etc/comin/deploy-key && gh repo deploy-key add /etc/comin/deploy-key.pub -R kothavade/nix-config -t comin@$(hostname -s)`
+`sudo install -d -m700 /etc/comin && sudo ssh-keygen -t ed25519 -N "" -C comin@$(hostname -s) -f /etc/comin/deploy-key && sudo cat /etc/comin/deploy-key.pub | gh repo deploy-key add - -R kothavade/nix-config -t comin@$(hostname -s)`
 
 Manual escape hatches:
 

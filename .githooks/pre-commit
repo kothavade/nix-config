@@ -2,7 +2,13 @@
 # Reject commits with unformatted staged .nix files. Fix with `nix fmt`.
 files=$(git diff --cached --name-only --diff-filter=ACM -- '*.nix')
 [ -z "$files" ] && exit 0
-echo "$files" | xargs nixfmt --check || {
+# nixfmt is on PATH inside the direnv shell; otherwise borrow it from the flake's dev shell.
+if command -v nixfmt >/dev/null; then
+  run=""
+else
+  run="nix develop --quiet --command"
+fi
+echo "$files" | xargs $run nixfmt --check || {
   echo "pre-commit: run 'nix fmt' and re-stage" >&2
   exit 1
 }
