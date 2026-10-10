@@ -1,4 +1,7 @@
 # Shared by every machine.
 _: {
-  imports = [ ./fish ];
+  imports = [
+    ./fish
+    ./helix.nix
+  ];
 }
