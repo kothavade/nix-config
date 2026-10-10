@@ -111,12 +111,29 @@
         "type": "github"
       }
     },
+    "no-clown-fiesta-ghostty": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1733267541,
+        "narHash": "sha256-G4XRaCT4OSYDljt5AN/DqSXtGS7X7IkYV/7dYPYID0k=",
+        "owner": "no-clown-fiesta",
+        "repo": "no-clown-fiesta.ghostty",
+        "rev": "fbe0bb7feeb73a419c929c46e7f55017fa983781",
+        "type": "github"
+      },
+      "original": {
+        "owner": "no-clown-fiesta",
+        "repo": "no-clown-fiesta.ghostty",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "comin": "comin",
         "darwin": "darwin",
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_2",
+        "no-clown-fiesta-ghostty": "no-clown-fiesta-ghostty"
       }
     },
     "treefmt-nix": {

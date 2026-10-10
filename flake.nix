@@ -50,5 +50,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     comin.url = "github:nlewo/comin";
     comin.inputs.nixpkgs.follows = "nixpkgs";
+    no-clown-fiesta-ghostty.url = "github:no-clown-fiesta/no-clown-fiesta.ghostty";
+    no-clown-fiesta-ghostty.flake = false;
   };
 }

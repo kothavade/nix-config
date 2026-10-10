@@ -37,6 +37,7 @@ osSystemFn {
         useUserPackages = true;
         # Move aside unmanaged dotfiles instead of refusing to switch.
         backupFileExtension = "hm-bak";
+        extraSpecialArgs = { inherit inputs; };
         users.${user} = {
           imports = [ ../home ] ++ nixpkgs.lib.optional isDarwin ../home/darwin.nix;
           home.stateVersion = homeStateVersion;
