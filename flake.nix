@@ -22,7 +22,7 @@
         inherit user;
         system = "aarch64-darwin";
         isDarwin = true;
-        machine = ./machines/eos.nix;
+        machine = ./machines/eos;
         homeStateVersion = "26.05";
       };
       nixosConfigurations.eris = mkSystem "eris" {
@@ -50,6 +50,11 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     comin.url = "github:nlewo/comin";
     comin.inputs.nixpkgs.follows = "nixpkgs";
+    hermes-agent.url = "github:NousResearch/hermes-agent";
+    hermes-agent.inputs.nixpkgs.follows = "nixpkgs";
+    hermes-agent.inputs.home-manager.follows = "home-manager";
+    hermes-official-plugins.url = "github:NousResearch/hermes-official-plugins";
+    hermes-official-plugins.flake = false;
     no-clown-fiesta-ghostty.url = "github:no-clown-fiesta/no-clown-fiesta.ghostty";
     no-clown-fiesta-ghostty.flake = false;
   };
