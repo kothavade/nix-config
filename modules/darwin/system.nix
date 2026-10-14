@@ -15,6 +15,13 @@
       NSGlobalDomain."com.apple.swipescrolldirection" = false;
     };
   };
+  # llm-agents.nix (claude-code, Hermes) is prebuilt here; see its input in flake.nix.
+  nix.settings = {
+    extra-substituters = [ "https://cache.numtide.com" ];
+    extra-trusted-public-keys = [
+      "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
+    ];
+  };
   nix.gc = {
     automatic = true;
     interval = {

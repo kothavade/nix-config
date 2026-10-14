@@ -9,18 +9,11 @@
 # Logs: ~/Library/Logs/hermes-agent{,.err}.log
 { inputs, user, ... }:
 {
-  # Hermes and claude-code come prebuilt from llm-agents.nix; upstream's flake has no cache and
-  # building Hermes (Python deps plus the TUI/web frontends) on eos takes ages.
-  nix.settings = {
-    extra-substituters = [ "https://cache.numtide.com" ];
-    extra-trusted-public-keys = [
-      "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
-    ];
-  };
-
   home-manager.users.${user} =
     { config, pkgs, ... }:
     let
+      # Prebuilt on llm-agents.nix's cache (configured in modules/darwin/system.nix); upstream's
+      # flake has no cache, and building Hermes and its frontends on eos takes ages.
       llm = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system};
       # Upstream's module (used for its launchd agent and config handling) expects upstream's
       # package, which carries `hermesVenv`: a python that can import hermes, used to stamp the
@@ -45,8 +38,8 @@
         enable = true;
         gateway.enable = true;
         package = hermes;
-        # The plugin finds `claude` on the gateway's PATH. Shares the login (Keychain, ~/.claude)
-        # with the homebrew cask that interactive shells use.
+        # The plugin finds `claude` on the gateway's PATH (the launchd agent doesn't see
+        # home.packages). Same package and login as the interactive `claude`.
         extraPackages = [ llm.claude-code ];
         extraPlugins = [ claudeSubscription ];
         settings.model = {

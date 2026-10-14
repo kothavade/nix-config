@@ -12,7 +12,6 @@ _: {
     };
     casks = [
       "bitwarden"
-      "claude-code"
       "ghostty@tip"
       "helium-browser"
       "iina"
