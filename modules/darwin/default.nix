@@ -2,6 +2,7 @@
 {
   imports = [
     ./builders.nix
+    ./comin.nix
     ./homebrew.nix
     ./system.nix
   ];
