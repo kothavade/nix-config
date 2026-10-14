@@ -53,6 +53,8 @@
     hermes-agent.url = "github:NousResearch/hermes-agent";
     hermes-agent.inputs.nixpkgs.follows = "nixpkgs";
     hermes-agent.inputs.home-manager.follows = "home-manager";
+    # Not following nixpkgs: its binary cache only hits for its own pinned nixpkgs.
+    llm-agents.url = "github:numtide/llm-agents.nix";
     hermes-official-plugins.url = "github:NousResearch/hermes-official-plugins";
     hermes-official-plugins.flake = false;
     no-clown-fiesta-ghostty.url = "github:no-clown-fiesta/no-clown-fiesta.ghostty";
