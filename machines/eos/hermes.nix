@@ -59,7 +59,26 @@ in
           provider = "claude-subscription-directsdk-experimental";
           default = "sonnet";
         };
+        # Never prompt for command approval (this is a single-user box behind a Discord allowlist).
+        settings.approvals = {
+          mode = "off";
+          cron_mode = "approve";
+          single_query_mode = "approve";
+          unattended_mode = "approve";
+        };
+        # Where cron output and notifications go; silences the "no home channel" notice.
+        settings.platforms.discord.home_channel = {
+          platform = "discord";
+          chat_id = "1559779425258577961";
+          name = "Home";
+        };
       };
+
+      # llm-agents' build omits the locale catalogs, so every user-facing string (progress lines,
+      # approval prompts) rendered as its raw key. Use the ones from upstream's source tree, which
+      # the same flake input pins to a release close to the packaged version.
+      launchd.agents.hermes-agent.config.EnvironmentVariables.HERMES_BUNDLED_LOCALES =
+        "${inputs.hermes-agent}/locales";
 
       # agenix decrypts from a launchd daemon, asynchronously to activation and at boot, while
       # the gateway reads .env only at start. Restart it whenever /run/agenix points at a new
