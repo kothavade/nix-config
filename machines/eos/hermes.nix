@@ -53,7 +53,10 @@ in
         package = hermes;
         # The plugin finds `claude` on the gateway's PATH (the launchd agent doesn't see
         # home.packages). Same package and login as the interactive `claude`.
-        extraPackages = [ llm.claude-code ];
+        extraPackages = [
+          llm.claude-code
+          llm.agent-browser
+        ];
         extraPlugins = [ claudeSubscription ];
         settings.model = {
           provider = "claude-subscription-directsdk-experimental";
@@ -66,6 +69,8 @@ in
           single_query_mode = "approve";
           unattended_mode = "approve";
         };
+        # Reply in the #hermes channel without needing an @mention.
+        settings.discord.free_response_channels = "1559776715633332235";
         # Where cron output and notifications go; silences the "no home channel" notice.
         settings.platforms.discord.home_channel = {
           platform = "discord";
@@ -79,6 +84,15 @@ in
       # the same flake input pins to a release close to the packaged version.
       launchd.agents.hermes-agent.config.EnvironmentVariables.HERMES_BUNDLED_LOCALES =
         "${inputs.hermes-agent}/locales";
+
+      # Let the gateway's shell (git signing, ssh pushes) use the Bitwarden SSH agent, as fish does.
+      launchd.agents.hermes-agent.config.EnvironmentVariables.SSH_AUTH_SOCK =
+        "${config.home.homeDirectory}/.bitwarden-ssh-agent.sock";
+
+      # Browser tools: agent-browser (on the gateway PATH above) drives nixpkgs' Chrome instead of
+      # the Playwright Chromium that `hermes pm install` would fetch, which nix can't manage.
+      launchd.agents.hermes-agent.config.EnvironmentVariables.AGENT_BROWSER_EXECUTABLE_PATH =
+        "${pkgs.google-chrome}/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 
       # agenix decrypts from a launchd daemon, asynchronously to activation and at boot, while
       # the gateway reads .env only at start. Restart it whenever /run/agenix points at a new
