@@ -18,7 +18,12 @@ in
   };
 
   home-manager.users.${user} =
-    { osConfig, pkgs, ... }:
+    {
+      config,
+      osConfig,
+      pkgs,
+      ...
+    }:
     let
       # Prebuilt on llm-agents.nix's cache (configured in modules/darwin/system.nix); upstream's
       # flake has no cache, and building Hermes and its frontends on eos takes ages.
@@ -57,17 +62,23 @@ in
       };
 
       # agenix decrypts from a launchd daemon, asynchronously to activation and at boot, while
-      # the gateway reads .env only at start. Restart it whenever a new generation of secrets
-      # lands (the /run/agenix symlink is swapped).
+      # the gateway reads .env only at start. Restart it whenever /run/agenix points at a new
+      # generation. Polled (plus RunAtLoad and a WatchPaths fast path) because this agent can
+      # load after agenix already swapped the link, which a watch alone misses.
       launchd.agents.hermes-agent-secrets = {
         enable = true;
         config = {
           ProgramArguments = [
-            "/bin/launchctl"
-            "kickstart"
-            "-k"
-            "gui/${toString osConfig.users.users.${user}.uid}/${gateway}"
+            "${pkgs.writeShellScript "hermes-agent-secrets" ''
+              state=${config.home.homeDirectory}/.hermes/.secrets-generation
+              current=$(readlink /run/agenix) || exit 0
+              [ "$current" = "$(cat "$state" 2>/dev/null)" ] && exit 0
+              /bin/launchctl kickstart -k gui/${toString osConfig.users.users.${user}.uid}/${gateway}
+              echo "$current" >"$state"
+            ''}"
           ];
+          RunAtLoad = true;
+          StartInterval = 60;
           WatchPaths = [ "/run/agenix" ];
         };
       };
