@@ -2,15 +2,23 @@
 # The model runs through the `claude` CLI via the DirectSDK plugin, so turns draw from the
 # subscription's Agent SDK allowance rather than an API key.
 #
-# One-time setup on eos:
-#   claude auth login
-#   printf 'DISCORD_BOT_TOKEN=...\nDISCORD_ALLOWED_USERS=<your user id>\n' > ~/.config/hermes/secrets.env
-#   chmod 600 ~/.config/hermes/secrets.env, then switch again to merge it into ~/.hermes/.env.
+# Discord credentials live in secrets/hermes.env.age (DISCORD_BOT_TOKEN, DISCORD_ALLOWED_USERS),
+# which agenix decrypts straight to ~/.hermes/.env. One-time setup on eos: `claude auth login`.
 # Logs: ~/Library/Logs/hermes-agent{,.err}.log
 { inputs, user, ... }:
+let
+  gateway = "org.nix-community.home.hermes-agent";
+in
 {
+  age.secrets.hermes-env = {
+    file = ../../secrets/hermes.env.age;
+    path = "/Users/${user}/.hermes/.env";
+    owner = user;
+    mode = "0400";
+  };
+
   home-manager.users.${user} =
-    { config, pkgs, ... }:
+    { osConfig, pkgs, ... }:
     let
       # Prebuilt on llm-agents.nix's cache (configured in modules/darwin/system.nix); upstream's
       # flake has no cache, and building Hermes and its frontends on eos takes ages.
@@ -46,7 +54,22 @@
           provider = "claude-subscription-directsdk-experimental";
           default = "sonnet";
         };
-        environmentFiles = [ "${config.home.homeDirectory}/.config/hermes/secrets.env" ];
+      };
+
+      # agenix decrypts from a launchd daemon, asynchronously to activation and at boot, while
+      # the gateway reads .env only at start. Restart it whenever a new generation of secrets
+      # lands (the /run/agenix symlink is swapped).
+      launchd.agents.hermes-agent-secrets = {
+        enable = true;
+        config = {
+          ProgramArguments = [
+            "/bin/launchctl"
+            "kickstart"
+            "-k"
+            "gui/${toString osConfig.users.users.${user}.uid}/${gateway}"
+          ];
+          WatchPaths = [ "/run/agenix" ];
+        };
       };
     };
 }

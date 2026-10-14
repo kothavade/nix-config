@@ -1,6 +1,12 @@
-{ pkgs, user, ... }:
+{
+  inputs,
+  pkgs,
+  user,
+  ...
+}:
 {
   imports = [
+    inputs.agenix.darwinModules.default
     ./builders.nix
     ./comin.nix
     ./homebrew.nix
