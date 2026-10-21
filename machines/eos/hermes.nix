@@ -71,6 +71,8 @@ in
         };
         # Reply in the #hermes channel without needing an @mention.
         settings.discord.free_response_channels = "1559776715633332235";
+        # ...and open a thread per top-level message there, so each task gets its own session.
+        settings.discord.free_response_auto_thread = true;
         # Where cron output and notifications go; silences the "no home channel" notice.
         settings.platforms.discord.home_channel = {
           platform = "discord";
