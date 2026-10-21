@@ -79,6 +79,56 @@ in
           chat_id = "1559779425258577961";
           name = "Home";
         };
+        # Webhook listener for event-driven runs (Gmail push triage). Loopback only; each route
+        # carries its own HMAC secret in ~/.hermes/webhook_subscriptions.json (`hermes webhook
+        # subscribe`), so no secret lives here. Exposed publicly only via the relay below.
+        settings.platforms.webhook = {
+          enabled = true;
+          extra = {
+            host = "127.0.0.1";
+            port = 8644;
+          };
+        };
+      };
+
+      # Gmail push relay: Pub/Sub can't HMAC-sign, so this takes its POSTs (exposed through the
+      # Tailscale Funnel agent below), checks the URL token and forwards signed events to the
+      # Hermes webhook route `gmail-triage`. Read-only. Config and state live in
+      # ~/.hermes/gmail-relay*.json.
+      launchd.agents.gmail-relay = {
+        enable = true;
+        config = {
+          ProgramArguments = [
+            "${pkgs.python3}/bin/python3"
+            "-I"
+            "${./gmail-relay.py}"
+          ];
+          RunAtLoad = true;
+          KeepAlive = true;
+          StandardOutPath = "${config.home.homeDirectory}/Library/Logs/gmail-relay.log";
+          StandardErrorPath = "${config.home.homeDirectory}/Library/Logs/gmail-relay.err";
+        };
+      };
+
+      # Public HTTPS for the relay: https://eos.<tailnet>.ts.net/gmail/... -> 127.0.0.1:8645. Run in
+      # the foreground so the Funnel exists exactly as long as this agent does (launchd restarts
+      # it); nothing else on eos is exposed. Needs the user to be tailscaled's operator
+      # (`sudo tailscale set --operator=${user}`, once).
+      launchd.agents.gmail-funnel = {
+        enable = true;
+        config = {
+          ProgramArguments = [
+            "/run/current-system/sw/bin/tailscale"
+            "funnel"
+            "--set-path=/gmail"
+            "http://127.0.0.1:8645/gmail"
+          ];
+          RunAtLoad = true;
+          KeepAlive = true;
+          ThrottleInterval = 30;
+          StandardOutPath = "${config.home.homeDirectory}/Library/Logs/gmail-funnel.log";
+          StandardErrorPath = "${config.home.homeDirectory}/Library/Logs/gmail-funnel.err";
+        };
       };
 
       # llm-agents' build omits the locale catalogs, so every user-facing string (progress lines,
