@@ -9,6 +9,7 @@
     inputs.agenix.darwinModules.default
     ./builders.nix
     ./comin.nix
+    ./dns.nix
     ./homebrew.nix
     ./system.nix
   ];
