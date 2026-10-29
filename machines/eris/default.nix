@@ -68,7 +68,6 @@
     initialHashedPassword = "!";
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN9SDEnJI+ueh1lXbrTpG2hoHtc6RfjRxd0RTXjjDdkB ved@kothavade.com"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIErVyDQRMn5bRa9Lp9MRhCoVmirYsrxIom7CXhMquZjQ kat"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJOAm1RLAlDnqjZeSuABKIpRERsIsWxJvtWh8YIPE8iU bw"
     ];
   };
