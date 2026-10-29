@@ -6,5 +6,4 @@ let
   eos = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJlIHtYlBNlgGsAv3tG5Nv8JQ1FNCNf1xaIrFPh0tQOu";
 in
 {
-  "hermes.env.age".publicKeys = [ eos ];
 }
