@@ -1,6 +1,11 @@
 # M4 Mac mini
 _: {
-  homebrew.casks = [ "middleclick" ];
+  # chatgpt: ariadne drives OpenAI's Computer Use component through this app's app-server.
+  # It updates itself (auto_updates), so Homebrew only installs it.
+  homebrew.casks = [
+    "chatgpt"
+    "middleclick"
+  ];
 
   # Open-source tailscaled (not the GUI app), since only it can act as a Tailscale SSH server.
   # After the first switch: sudo tailscale up --ssh --advertise-exit-node
