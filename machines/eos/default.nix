@@ -1,10 +1,14 @@
 # M4 Mac mini
-_: {
-  # chatgpt: ariadne drives OpenAI's Computer Use component through this app's app-server.
-  # It updates itself (auto_updates), so Homebrew only installs it.
-  homebrew.casks = [
-    "chatgpt"
-    "middleclick"
+{ inputs, pkgs, ... }:
+{
+  homebrew.casks = [ "middleclick" ];
+
+  # ChatGPT desktop app (lands in /Applications/Nix Apps). ariadne drives OpenAI's Computer Use
+  # component through this app's bundled app-server. From Nix rather than Homebrew so it can't
+  # update itself: that API is experimental, so new versions arrive only through flake.lock bumps
+  # and can be reverted. The Nix copy keeps OpenAI's signature, which the bridge checks.
+  environment.systemPackages = [
+    inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.chatgpt
   ];
 
   # Open-source tailscaled (not the GUI app), since only it can act as a Tailscale SSH server.
